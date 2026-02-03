@@ -164,23 +164,3 @@ Edit `config.py` to customize:
   "compliance_score": 78
 }
 ```
-
-## 🤝 Contributing
-
-Contributions welcome! Please read our contributing guidelines.
-
-## ⚠️ Disclaimer
-
-This tool is for educational and informational purposes only. It does not constitute legal advice. Always consult a qualified legal professional before making decisions based on contract analysis.
-
-## 📄 License
-
-MIT License - see LICENSE file for details.
-
-## 👥 Team
-
-Built for the GenAI Hackathon 2026
-
----
-
-**Made with ❤️ for Indian SMEs**

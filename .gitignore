@@ -1,1 +1,6 @@
 .env
+DEMO_VIDEO_SCRIPT.md
+PROJECT_DESCRIPTION.md
+README.md
+.gitignore
+logs

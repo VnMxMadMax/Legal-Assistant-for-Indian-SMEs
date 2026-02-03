@@ -1,0 +1,84 @@
+{
+    "template_id": "employment_agreement",
+    "name": "Employment Agreement Template",
+    "description": "Standard employment agreement template for SMEs in India",
+    "contract_type": "Employment Agreement",
+    "sections": [
+        {
+            "title": "Parties",
+            "content": "This Employment Agreement (\"Agreement\") is entered into on [DATE] between:\n\n[COMPANY NAME], a company incorporated under the laws of India, having its registered office at [ADDRESS] (hereinafter referred to as the \"Employer\")\n\nAND\n\n[EMPLOYEE NAME], residing at [ADDRESS] (hereinafter referred to as the \"Employee\")"
+        },
+        {
+            "title": "Position and Duties",
+            "content": "1. The Employer hereby employs the Employee as [DESIGNATION].\n2. The Employee shall report to [REPORTING MANAGER/DESIGNATION].\n3. The Employee's duties shall include but not be limited to:\n   a) [Primary responsibilities]\n   b) [Secondary responsibilities]\n4. The Employee agrees to perform duties diligently and to the best of their abilities."
+        },
+        {
+            "title": "Term of Employment",
+            "content": "1. This Agreement shall commence on [START DATE].\n2. The Employee shall be on probation for a period of [3/6] months from the date of joining.\n3. Upon successful completion of probation, the Employee shall be confirmed as a permanent employee."
+        },
+        {
+            "title": "Compensation",
+            "content": "1. The Employee shall receive a monthly salary of Rs. [AMOUNT] (Rupees [AMOUNT IN WORDS] only).\n2. Salary shall be paid on or before the [DATE] of each month.\n3. Statutory deductions including Provident Fund, Professional Tax, and Income Tax shall be made as applicable.\n4. The Employee shall be eligible for the following benefits:\n   a) [Health insurance]\n   b) [Leave entitlements]\n   c) [Other benefits]"
+        },
+        {
+            "title": "Working Hours",
+            "content": "1. Standard working hours shall be from [START TIME] to [END TIME], Monday to [FRIDAY/SATURDAY].\n2. The Employee may be required to work additional hours as reasonably necessary.\n3. Overtime compensation, if applicable, shall be as per company policy."
+        },
+        {
+            "title": "Leave Entitlement",
+            "content": "1. The Employee shall be entitled to:\n   a) [NUMBER] days of earned leave per year\n   b) [NUMBER] days of sick leave per year\n   c) [NUMBER] days of casual leave per year\n2. Leave shall be availed as per company leave policy.\n3. Unused earned leave may be carried forward/encashed as per policy."
+        },
+        {
+            "title": "Confidentiality",
+            "content": "1. The Employee shall maintain strict confidentiality of all proprietary information.\n2. Confidential information includes but is not limited to trade secrets, business strategies, client information, and technical data.\n3. This obligation shall survive termination of employment for a period of [2] years."
+        },
+        {
+            "title": "Termination",
+            "content": "1. During probation, either party may terminate with [7/15] days written notice.\n2. After confirmation, either party may terminate with [30/60/90] days written notice or salary in lieu thereof.\n3. The Employer may terminate without notice for:\n   a) Gross misconduct\n   b) Breach of confidentiality\n   c) Negligence causing material loss\n4. Upon termination, the Employee shall return all company property."
+        },
+        {
+            "title": "Notice Period",
+            "content": "1. The notice period shall be [DURATION] from the date of resignation/termination.\n2. The Employer reserves the right to accept shorter notice at its discretion.\n3. The Employee shall complete proper handover during the notice period."
+        },
+        {
+            "title": "General Provisions",
+            "content": "1. This Agreement constitutes the entire agreement between the parties.\n2. Any modification shall be in writing and signed by both parties.\n3. This Agreement shall be governed by the laws of India.\n4. Any disputes shall be subject to the exclusive jurisdiction of courts in [CITY]."
+        }
+    ],
+    "placeholders": [
+        {
+            "key": "[DATE]",
+            "description": "Date of agreement"
+        },
+        {
+            "key": "[COMPANY NAME]",
+            "description": "Name of the employer company"
+        },
+        {
+            "key": "[ADDRESS]",
+            "description": "Registered address"
+        },
+        {
+            "key": "[EMPLOYEE NAME]",
+            "description": "Name of the employee"
+        },
+        {
+            "key": "[DESIGNATION]",
+            "description": "Job title/position"
+        },
+        {
+            "key": "[AMOUNT]",
+            "description": "Salary amount"
+        },
+        {
+            "key": "[CITY]",
+            "description": "City for jurisdiction"
+        }
+    ],
+    "notes": [
+        "Ensure compliance with applicable labor laws",
+        "PF registration required if 20+ employees",
+        "ESI applicable if salary below threshold",
+        "Maintain proper documentation of all employment records"
+    ]
+}

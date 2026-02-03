@@ -1,0 +1,427 @@
+[
+  {
+    "timestamp": "2026-02-03T12:19:21.388662",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "dca988f8b745",
+    "details": {
+      "file_size_bytes": 3292,
+      "file_type": ".txt"
+    }
+  },
+  {
+    "timestamp": "2026-02-03T12:19:22.039916",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "dca988f8b745",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Employment Agreement",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-03T12:20:39.535995",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "RF_Populated_SAP_Services_Software(testing).docx",
+    "document_hash": "ea88972b9cdbde4b",
+    "session_id": "dca988f8b745",
+    "details": {
+      "file_size_bytes": 43063,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-03T12:20:58.401394",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "RF_Populated_SAP_Services_Software(testing).docx",
+    "document_hash": "ea88972b9cdbde4b",
+    "session_id": "dca988f8b745",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Vendor Contract",
+      "risk_score": 3.2
+    }
+  },
+  {
+    "timestamp": "2026-02-03T12:21:19.316672",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "RF_Populated_SAP_Services_Software(testing).docx",
+    "document_hash": "ea88972b9cdbde4b",
+    "session_id": "dca988f8b745",
+    "details": {
+      "file_size_bytes": 43063,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-03T12:21:34.264196",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "RF_Populated_SAP_Services_Software(testing).docx",
+    "document_hash": "ea88972b9cdbde4b",
+    "session_id": "dca988f8b745",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Vendor Contract",
+      "risk_score": 3.2
+    }
+  },
+  {
+    "timestamp": "2026-02-03T13:26:05.402960",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "fb0d0f70e7de",
+    "details": {
+      "file_size_bytes": 3292,
+      "file_type": ".txt"
+    }
+  },
+  {
+    "timestamp": "2026-02-03T13:26:05.899527",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "fb0d0f70e7de",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Employment Agreement",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-03T13:26:32.824745",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "fb0d0f70e7de",
+    "details": {
+      "file_size_bytes": 3292,
+      "file_type": ".txt"
+    }
+  },
+  {
+    "timestamp": "2026-02-03T13:26:46.935016",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "fb0d0f70e7de",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Employment Agreement",
+      "risk_score": 4.7
+    }
+  },
+  {
+    "timestamp": "2026-02-03T13:28:42.109942",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "f4651b4a1f68",
+    "details": {
+      "file_size_bytes": 3292,
+      "file_type": ".txt"
+    }
+  },
+  {
+    "timestamp": "2026-02-03T13:28:54.270443",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "f4651b4a1f68",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Employment Agreement",
+      "risk_score": 4.7
+    }
+  },
+  {
+    "timestamp": "2026-02-03T13:31:17.452014",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "Oliver Farrell – Full Project Overview.pdf",
+    "document_hash": "96da17f3f97fd759",
+    "session_id": "2147e87fd6e1",
+    "details": {
+      "file_size_bytes": 33914,
+      "file_type": ".pdf"
+    }
+  },
+  {
+    "timestamp": "2026-02-03T13:31:18.016786",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "Oliver Farrell – Full Project Overview.pdf",
+    "document_hash": "96da17f3f97fd759",
+    "session_id": "2147e87fd6e1",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Unknown",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-03T13:31:23.588016",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "2147e87fd6e1",
+    "details": {
+      "file_size_bytes": 3292,
+      "file_type": ".txt"
+    }
+  },
+  {
+    "timestamp": "2026-02-03T13:31:23.653275",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "2147e87fd6e1",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Employment Agreement",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-03T15:03:26.299651",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "d8a66c32c9c2",
+    "details": {
+      "file_size_bytes": 3292,
+      "file_type": ".txt"
+    }
+  },
+  {
+    "timestamp": "2026-02-03T18:17:57.999650",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "2e14b1456d38",
+    "details": {
+      "file_size_bytes": 3292,
+      "file_type": ".txt"
+    }
+  },
+  {
+    "timestamp": "2026-02-03T18:17:58.650307",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "2e14b1456d38",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Employment Agreement",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-03T18:19:53.528864",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "d1e69f70227e",
+    "details": {
+      "file_size_bytes": 3292,
+      "file_type": ".txt"
+    }
+  },
+  {
+    "timestamp": "2026-02-03T18:19:53.582732",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "d1e69f70227e",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Employment Agreement",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-03T18:25:55.158557",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "5f5b2ed9a246",
+    "details": {
+      "file_size_bytes": 3292,
+      "file_type": ".txt"
+    }
+  },
+  {
+    "timestamp": "2026-02-03T18:25:55.665105",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "5f5b2ed9a246",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Employment Agreement",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-03T18:31:50.245398",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "5f5b2ed9a246",
+    "details": {
+      "file_size_bytes": 3292,
+      "file_type": ".txt"
+    }
+  },
+  {
+    "timestamp": "2026-02-03T18:32:28.159283",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "5f5b2ed9a246",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Employment Agreement",
+      "risk_score": 3.5
+    }
+  },
+  {
+    "timestamp": "2026-02-03T18:36:57.005661",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "cfd495279c54",
+    "details": {
+      "file_size_bytes": 3292,
+      "file_type": ".txt"
+    }
+  },
+  {
+    "timestamp": "2026-02-03T18:36:57.580318",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "cfd495279c54",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Employment Agreement",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-03T18:42:07.106687",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "351539e6a0fc",
+    "details": {
+      "file_size_bytes": 3292,
+      "file_type": ".txt"
+    }
+  },
+  {
+    "timestamp": "2026-02-03T18:42:07.167131",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "351539e6a0fc",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Employment Agreement",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-03T18:46:24.626007",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "b4b0b601a483",
+    "details": {
+      "file_size_bytes": 3292,
+      "file_type": ".txt"
+    }
+  },
+  {
+    "timestamp": "2026-02-03T18:46:43.481450",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "b4b0b601a483",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Employment Agreement",
+      "risk_score": 5.0
+    }
+  },
+  {
+    "timestamp": "2026-02-03T18:47:19.597004",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "b4b0b601a483",
+    "details": {
+      "file_size_bytes": 3292,
+      "file_type": ".txt"
+    }
+  },
+  {
+    "timestamp": "2026-02-03T18:47:32.372928",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "b4b0b601a483",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Employment Agreement",
+      "risk_score": 5.0
+    }
+  },
+  {
+    "timestamp": "2026-02-03T18:54:29.952565",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "a41eaa36b8cd",
+    "details": {
+      "file_size_bytes": 3292,
+      "file_type": ".txt"
+    }
+  },
+  {
+    "timestamp": "2026-02-03T18:54:42.519346",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "a41eaa36b8cd",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Employment Agreement",
+      "risk_score": 4.7
+    }
+  },
+  {
+    "timestamp": "2026-02-03T18:54:59.196945",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "a41eaa36b8cd",
+    "details": {
+      "file_size_bytes": 3292,
+      "file_type": ".txt"
+    }
+  },
+  {
+    "timestamp": "2026-02-03T18:55:09.979721",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "employment_agreement.txt",
+    "document_hash": "a266c8335500d5f3",
+    "session_id": "a41eaa36b8cd",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Employment Agreement",
+      "risk_score": 4.7
+    }
+  }
+]

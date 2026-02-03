@@ -1,0 +1,62 @@
+2026-02-03 15:03:26 | INFO     | __main__             | main                 | File uploaded: employment_agreement.txt (3292 bytes) - Mode: USER
+2026-02-03 18:17:58 | INFO     | __main__             | analyze_contract     | Starting contract analysis for: employment_agreement.txt
+2026-02-03 18:17:58 | INFO     | __main__             | analyze_contract     | Language detected: en
+2026-02-03 18:17:58 | INFO     | __main__             | analyze_contract     | Contract classified as: Employment Agreement (confidence: 0.62)
+2026-02-03 18:17:58 | INFO     | __main__             | analyze_contract     | Using regex-based clause extraction...
+2026-02-03 18:17:58 | INFO     | __main__             | analyze_contract     | Regex extraction complete: 0 clauses found
+2026-02-03 18:19:53 | INFO     | __main__             | analyze_contract     | Starting contract analysis for: employment_agreement.txt
+2026-02-03 18:19:53 | INFO     | __main__             | analyze_contract     | Language detected: en
+2026-02-03 18:19:53 | INFO     | __main__             | analyze_contract     | Contract classified as: Employment Agreement (confidence: 0.62)
+2026-02-03 18:19:53 | INFO     | __main__             | analyze_contract     | Using regex-based clause extraction...
+2026-02-03 18:19:53 | INFO     | __main__             | analyze_contract     | Regex extraction complete: 0 clauses found
+2026-02-03 18:19:53 | INFO     | __main__             | main                 | Analysis complete: Employment Agreement - Risk: 0.0/10
+2026-02-03 18:25:55 | INFO     | __main__             | analyze_contract     | Starting contract analysis for: employment_agreement.txt
+2026-02-03 18:25:55 | INFO     | __main__             | analyze_contract     | Language detected: en
+2026-02-03 18:25:55 | INFO     | __main__             | analyze_contract     | Contract classified as: Employment Agreement (confidence: 0.62)
+2026-02-03 18:25:55 | INFO     | __main__             | analyze_contract     | Using regex-based clause extraction...
+2026-02-03 18:25:55 | INFO     | __main__             | analyze_contract     | Regex extraction complete: 0 clauses found
+2026-02-03 18:25:55 | INFO     | __main__             | main                 | Analysis complete: Employment Agreement - Risk: 0.0/10
+2026-02-03 18:31:50 | INFO     | __main__             | analyze_contract     | Starting contract analysis for: employment_agreement.txt
+2026-02-03 18:31:50 | INFO     | __main__             | analyze_contract     | Language detected: en
+2026-02-03 18:31:50 | INFO     | __main__             | analyze_contract     | Contract classified as: Employment Agreement (confidence: 0.62)
+2026-02-03 18:31:50 | INFO     | __main__             | analyze_contract     | Attempting AI-powered clause extraction...
+2026-02-03 18:32:28 | INFO     | __main__             | analyze_contract     | AI extraction successful: 32 clauses, 3591 tokens used
+2026-02-03 18:32:28 | INFO     | __main__             | main                 | Analysis complete: Employment Agreement - Risk: 3.5/10
+2026-02-03 18:36:57 | INFO     | __main__             | analyze_contract     | Starting contract analysis for: employment_agreement.txt
+2026-02-03 18:36:57 | INFO     | __main__             | analyze_contract     | Language detected: en
+2026-02-03 18:36:57 | INFO     | __main__             | analyze_contract     | Contract classified as: Employment Agreement (confidence: 0.62)
+2026-02-03 18:36:57 | INFO     | __main__             | analyze_contract     | Using regex-based clause extraction...
+2026-02-03 18:36:57 | INFO     | __main__             | analyze_contract     | Regex extraction complete: 0 clauses found
+2026-02-03 18:36:57 | INFO     | __main__             | main                 | Analysis complete: Employment Agreement - Risk: 0.0/10
+2026-02-03 18:42:07 | INFO     | __main__             | analyze_contract     | Starting contract analysis for: employment_agreement.txt
+2026-02-03 18:42:07 | INFO     | __main__             | analyze_contract     | Language detected: en
+2026-02-03 18:42:07 | INFO     | __main__             | analyze_contract     | Contract classified as: Employment Agreement (confidence: 0.62)
+2026-02-03 18:42:07 | INFO     | __main__             | analyze_contract     | Using regex-based clause extraction...
+2026-02-03 18:42:07 | INFO     | __main__             | analyze_contract     | Regex extraction complete: 0 clauses found
+2026-02-03 18:42:07 | INFO     | __main__             | main                 | Analysis complete: Employment Agreement - Risk: 0.0/10
+2026-02-03 18:46:24 | INFO     | __main__             | analyze_contract     | Starting contract analysis for: employment_agreement.txt
+2026-02-03 18:46:25 | INFO     | __main__             | analyze_contract     | Language detected: en
+2026-02-03 18:46:25 | INFO     | __main__             | analyze_contract     | Contract classified as: Employment Agreement (confidence: 0.62)
+2026-02-03 18:46:25 | INFO     | __main__             | analyze_contract     | Attempting AI-powered clause extraction...
+2026-02-03 18:46:43 | INFO     | __main__             | analyze_contract     | AI extraction successful: 10 clauses, 2762 tokens used
+2026-02-03 18:46:43 | INFO     | __main__             | main                 | Analysis complete: Employment Agreement - Risk: 5.0/10
+2026-02-03 18:47:19 | INFO     | __main__             | analyze_contract     | Starting contract analysis for: employment_agreement.txt
+2026-02-03 18:47:19 | INFO     | __main__             | analyze_contract     | Language detected: en
+2026-02-03 18:47:19 | INFO     | __main__             | analyze_contract     | Contract classified as: Employment Agreement (confidence: 0.62)
+2026-02-03 18:47:19 | INFO     | __main__             | analyze_contract     | Attempting AI-powered clause extraction...
+2026-02-03 18:47:32 | INFO     | __main__             | analyze_contract     | AI extraction successful: 10 clauses, 2687 tokens used
+2026-02-03 18:47:32 | INFO     | __main__             | main                 | Analysis complete: Employment Agreement - Risk: 5.0/10
+2026-02-03 18:54:29 | INFO     | __main__             | main                 | File uploaded: employment_agreement.txt (3292 bytes) - Mode: DEMO
+2026-02-03 18:54:29 | INFO     | __main__             | analyze_contract     | Starting contract analysis for: employment_agreement.txt
+2026-02-03 18:54:30 | INFO     | __main__             | analyze_contract     | Language detected: en
+2026-02-03 18:54:30 | INFO     | __main__             | analyze_contract     | Contract classified as: Employment Agreement (confidence: 0.62)
+2026-02-03 18:54:30 | INFO     | __main__             | analyze_contract     | Attempting AI-powered clause extraction...
+2026-02-03 18:54:42 | INFO     | __main__             | analyze_contract     | AI extraction successful: 10 clauses, 2700 tokens used
+2026-02-03 18:54:42 | INFO     | __main__             | main                 | Analysis complete: Employment Agreement - Risk: 4.7/10
+2026-02-03 18:54:59 | INFO     | __main__             | main                 | File uploaded: employment_agreement.txt (3292 bytes) - Mode: DEMO
+2026-02-03 18:54:59 | INFO     | __main__             | analyze_contract     | Starting contract analysis for: employment_agreement.txt
+2026-02-03 18:54:59 | INFO     | __main__             | analyze_contract     | Language detected: en
+2026-02-03 18:54:59 | INFO     | __main__             | analyze_contract     | Contract classified as: Employment Agreement (confidence: 0.62)
+2026-02-03 18:54:59 | INFO     | __main__             | analyze_contract     | Attempting AI-powered clause extraction...
+2026-02-03 18:55:09 | INFO     | __main__             | analyze_contract     | AI extraction successful: 10 clauses, 2695 tokens used
+2026-02-03 18:55:09 | INFO     | __main__             | main                 | Analysis complete: Employment Agreement - Risk: 4.7/10

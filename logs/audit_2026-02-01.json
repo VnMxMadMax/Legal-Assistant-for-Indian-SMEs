@@ -1,0 +1,956 @@
+[
+  {
+    "timestamp": "2026-02-01T02:13:17.176236",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "AI_RFP_Technical_Documentation.docx",
+    "document_hash": "5e4ac0c3dbe8f419",
+    "session_id": "5155a9d202e6",
+    "details": {
+      "file_size_bytes": 36771,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T02:13:18.616627",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "AI_RFP_Technical_Documentation.docx",
+    "document_hash": "5e4ac0c3dbe8f419",
+    "session_id": "5155a9d202e6",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Unknown",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T02:14:07.852825",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "AI Documentation (2).docx",
+    "document_hash": "da0e6e2afb11dcb9",
+    "session_id": "5155a9d202e6",
+    "details": {
+      "file_size_bytes": 238714,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T02:14:09.368592",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "AI Documentation (2).docx",
+    "document_hash": "da0e6e2afb11dcb9",
+    "session_id": "5155a9d202e6",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Vendor Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T02:14:21.541564",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "AI Documentation (2).docx",
+    "document_hash": "da0e6e2afb11dcb9",
+    "session_id": "5155a9d202e6",
+    "details": {
+      "file_size_bytes": 238714,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T02:14:22.648672",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "AI Documentation (2).docx",
+    "document_hash": "da0e6e2afb11dcb9",
+    "session_id": "5155a9d202e6",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Vendor Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T02:15:03.666361",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "RF_Populated_SAP_Services_Software (1).docx",
+    "document_hash": "69732805d4f61839",
+    "session_id": "5155a9d202e6",
+    "details": {
+      "file_size_bytes": 42863,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T02:15:04.010332",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "RF_Populated_SAP_Services_Software (1).docx",
+    "document_hash": "69732805d4f61839",
+    "session_id": "5155a9d202e6",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Vendor Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T02:15:30.689000",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "RF_Populated_SAP_Services_Software (1).docx",
+    "document_hash": "69732805d4f61839",
+    "session_id": "5155a9d202e6",
+    "details": {
+      "file_size_bytes": 42863,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T02:15:30.960300",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "RF_Populated_SAP_Services_Software (1).docx",
+    "document_hash": "69732805d4f61839",
+    "session_id": "5155a9d202e6",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Vendor Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T02:15:43.154126",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "RF_Populated_SAP_Services_Software (1).docx",
+    "document_hash": "69732805d4f61839",
+    "session_id": "5155a9d202e6",
+    "details": {
+      "file_size_bytes": 42863,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T02:15:43.410807",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "RF_Populated_SAP_Services_Software (1).docx",
+    "document_hash": "69732805d4f61839",
+    "session_id": "5155a9d202e6",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Vendor Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T12:33:26.754513",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "2d9dd42f6959",
+    "details": {
+      "file_size_bytes": 37699,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T12:33:27.621345",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "2d9dd42f6959",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T12:42:39.697753",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "2d9dd42f6959",
+    "details": {
+      "file_size_bytes": 37699,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T12:42:39.748914",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "2d9dd42f6959",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T12:57:56.731350",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "f833a4b6e92e",
+    "details": {
+      "file_size_bytes": 37699,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T12:57:57.292331",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "f833a4b6e92e",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T12:58:26.423805",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "f833a4b6e92e",
+    "details": {
+      "file_size_bytes": 37699,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T12:58:26.470939",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "f833a4b6e92e",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T12:58:38.233107",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "f833a4b6e92e",
+    "details": {
+      "file_size_bytes": 37699,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T12:58:38.270967",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "f833a4b6e92e",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T13:00:30.863889",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "979b9e337099",
+    "details": {
+      "file_size_bytes": 37699,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T13:00:30.902107",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "979b9e337099",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T13:02:15.309972",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "979b9e337099",
+    "details": {
+      "file_size_bytes": 37699,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T13:02:15.344369",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "979b9e337099",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T13:02:19.757240",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "979b9e337099",
+    "details": {
+      "file_size_bytes": 37699,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T13:02:19.804561",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "979b9e337099",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T13:02:31.243307",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "979b9e337099",
+    "details": {
+      "file_size_bytes": 37699,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T13:02:31.288329",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "979b9e337099",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T13:06:11.606136",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "979b9e337099",
+    "details": {
+      "file_size_bytes": 37699,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T13:06:11.835521",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "979b9e337099",
+    "details": {
+      "file_size_bytes": 37699,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T13:06:11.878026",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "979b9e337099",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T13:06:15.443349",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "979b9e337099",
+    "details": {
+      "file_size_bytes": 37699,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T13:06:15.485298",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "979b9e337099",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T13:42:28.392098",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "979b9e337099",
+    "details": {
+      "file_size_bytes": 37699,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T13:42:28.453644",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "979b9e337099",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T13:42:33.304703",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "979b9e337099",
+    "details": {
+      "file_size_bytes": 37699,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T13:42:33.349090",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "979b9e337099",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T14:42:50.433555",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "3ac842fca1ab",
+    "details": {
+      "file_size_bytes": 37699,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T14:42:50.891011",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "3ac842fca1ab",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T14:43:11.960215",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "3ac842fca1ab",
+    "details": {
+      "file_size_bytes": 37699,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T14:43:11.990622",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "3ac842fca1ab",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T14:43:24.118636",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "3ac842fca1ab",
+    "details": {
+      "file_size_bytes": 37699,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T14:43:24.153192",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "3ac842fca1ab",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T14:51:27.478514",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "5a340b1d8cb2",
+    "details": {
+      "file_size_bytes": 37699,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T14:51:27.535969",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "5a340b1d8cb2",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T14:51:38.253264",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "5a340b1d8cb2",
+    "details": {
+      "file_size_bytes": 37699,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T14:51:38.290579",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "5a340b1d8cb2",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T14:52:09.366409",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "5a340b1d8cb2",
+    "details": {
+      "file_size_bytes": 37699,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T14:52:09.412653",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "5a340b1d8cb2",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T14:52:14.125179",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "5a340b1d8cb2",
+    "details": {
+      "file_size_bytes": 37699,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T14:52:14.169196",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "5a340b1d8cb2",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T14:53:24.944410",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "5a340b1d8cb2",
+    "details": {
+      "file_size_bytes": 37699,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T14:53:24.978502",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "5a340b1d8cb2",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T14:53:29.522155",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "5a340b1d8cb2",
+    "details": {
+      "file_size_bytes": 37699,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T14:53:29.558753",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "5a340b1d8cb2",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T14:56:01.508998",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "5a340b1d8cb2",
+    "details": {
+      "file_size_bytes": 37699,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T14:56:01.554422",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "5a340b1d8cb2",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T14:56:05.513745",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "5a340b1d8cb2",
+    "details": {
+      "file_size_bytes": 37699,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T14:56:05.549316",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "Service_Agreement_Test_Document.docx",
+    "document_hash": "95710f1df18d88d6",
+    "session_id": "5a340b1d8cb2",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T15:00:48.653711",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "test_contract.txt",
+    "document_hash": "b3b6d7fc1d682ebd",
+    "session_id": "5a340b1d8cb2",
+    "details": {
+      "file_size_bytes": 11720,
+      "file_type": ".txt"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T15:00:48.828027",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "test_contract.txt",
+    "document_hash": "b3b6d7fc1d682ebd",
+    "session_id": "5a340b1d8cb2",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T15:01:04.256409",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "test_contract.txt",
+    "document_hash": "b3b6d7fc1d682ebd",
+    "session_id": "5a340b1d8cb2",
+    "details": {
+      "file_size_bytes": 11720,
+      "file_type": ".txt"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T15:01:04.451237",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "test_contract.txt",
+    "document_hash": "b3b6d7fc1d682ebd",
+    "session_id": "5a340b1d8cb2",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T15:02:03.750221",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "813-2024 Request_for_Proposal_Populated (1).docx",
+    "document_hash": "5abd1a674e93f0b1",
+    "session_id": "5a340b1d8cb2",
+    "details": {
+      "file_size_bytes": 145767,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T15:02:04.390466",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "813-2024 Request_for_Proposal_Populated (1).docx",
+    "document_hash": "5abd1a674e93f0b1",
+    "session_id": "5a340b1d8cb2",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Vendor Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T15:13:39.940236",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "test_contract.txt",
+    "document_hash": "39fea78ed87e9fb8",
+    "session_id": "5a340b1d8cb2",
+    "details": {
+      "file_size_bytes": 2453,
+      "file_type": ".txt"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T15:13:40.000793",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "test_contract.txt",
+    "document_hash": "39fea78ed87e9fb8",
+    "session_id": "5a340b1d8cb2",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T15:44:39.296188",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "test_contract.txt",
+    "document_hash": "39fea78ed87e9fb8",
+    "session_id": "8a32ee349bc5",
+    "details": {
+      "file_size_bytes": 2453,
+      "file_type": ".txt"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T15:45:08.010244",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "test_contract.txt",
+    "document_hash": "39fea78ed87e9fb8",
+    "session_id": "8a32ee349bc5",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 4.18
+    }
+  },
+  {
+    "timestamp": "2026-02-01T21:05:15.511069",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "test_contract.txt",
+    "document_hash": "39fea78ed87e9fb8",
+    "session_id": "68b8dbe3d09e",
+    "details": {
+      "file_size_bytes": 2453,
+      "file_type": ".txt"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T21:05:16.525105",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "test_contract.txt",
+    "document_hash": "39fea78ed87e9fb8",
+    "session_id": "68b8dbe3d09e",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T21:05:24.058754",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "test_contract.txt",
+    "document_hash": "39fea78ed87e9fb8",
+    "session_id": "68b8dbe3d09e",
+    "details": {
+      "file_size_bytes": 2453,
+      "file_type": ".txt"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T21:05:24.115640",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "test_contract.txt",
+    "document_hash": "39fea78ed87e9fb8",
+    "session_id": "68b8dbe3d09e",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 0
+    }
+  },
+  {
+    "timestamp": "2026-02-01T21:05:30.731692",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "test_contract.txt",
+    "document_hash": "39fea78ed87e9fb8",
+    "session_id": "68b8dbe3d09e",
+    "details": {
+      "file_size_bytes": 2453,
+      "file_type": ".txt"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T21:05:52.650812",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "test_contract.txt",
+    "document_hash": "39fea78ed87e9fb8",
+    "session_id": "68b8dbe3d09e",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 4.73
+    }
+  },
+  {
+    "timestamp": "2026-02-01T21:06:36.031676",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "test_contract.txt",
+    "document_hash": "39fea78ed87e9fb8",
+    "session_id": "68b8dbe3d09e",
+    "details": {
+      "file_size_bytes": 2453,
+      "file_type": ".txt"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T21:06:57.509056",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "test_contract.txt",
+    "document_hash": "39fea78ed87e9fb8",
+    "session_id": "68b8dbe3d09e",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Service Contract",
+      "risk_score": 4.45
+    }
+  },
+  {
+    "timestamp": "2026-02-01T21:07:55.453461",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "RF_Populated_SAP_Services_Software.docx",
+    "document_hash": "26f4b30020dca276",
+    "session_id": "68b8dbe3d09e",
+    "details": {
+      "file_size_bytes": 67775,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T21:08:26.975226",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "RF_Populated_SAP_Services_Software.docx",
+    "document_hash": "26f4b30020dca276",
+    "session_id": "68b8dbe3d09e",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Vendor Contract",
+      "risk_score": 3.85
+    }
+  },
+  {
+    "timestamp": "2026-02-01T21:09:11.110884",
+    "operation": "DOCUMENT_UPLOAD",
+    "document_name": "RF_Populated_SAP_Services_Software.docx",
+    "document_hash": "26f4b30020dca276",
+    "session_id": "68b8dbe3d09e",
+    "details": {
+      "file_size_bytes": 67775,
+      "file_type": ".docx"
+    }
+  },
+  {
+    "timestamp": "2026-02-01T21:09:50.777324",
+    "operation": "CONTRACT_ANALYSIS",
+    "document_name": "RF_Populated_SAP_Services_Software.docx",
+    "document_hash": "26f4b30020dca276",
+    "session_id": "68b8dbe3d09e",
+    "details": {
+      "analysis_type": "full",
+      "contract_type": "Vendor Contract",
+      "risk_score": 3.62
+    }
+  }
+]

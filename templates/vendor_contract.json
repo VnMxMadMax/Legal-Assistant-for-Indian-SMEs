@@ -1,0 +1,89 @@
+{
+    "template_id": "vendor_contract",
+    "name": "Vendor/Supplier Agreement Template",
+    "description": "Standard vendor/supplier agreement for procurement",
+    "contract_type": "Vendor Contract",
+    "sections": [
+        {
+            "title": "Parties",
+            "content": "This Vendor Agreement (\"Agreement\") is entered into on [DATE] between:\n\n[BUYER NAME], having its office at [ADDRESS] (hereinafter referred to as the \"Buyer\")\n\nAND\n\n[VENDOR NAME], having its office at [ADDRESS], GSTIN: [GSTIN] (hereinafter referred to as the \"Vendor\")"
+        },
+        {
+            "title": "Scope of Supply",
+            "content": "1. The Vendor agrees to supply the following goods/materials:\n   [Item 1] - Quantity: [X] - Unit Price: Rs. [AMOUNT]\n   [Item 2] - Quantity: [X] - Unit Price: Rs. [AMOUNT]\n2. Detailed specifications are attached as Schedule A.\n3. Any variation must be approved in writing."
+        },
+        {
+            "title": "Orders and Delivery",
+            "content": "1. Orders shall be placed via purchase order (PO).\n2. Delivery shall be made within [X] days of PO receipt.\n3. Delivery location: [ADDRESS]\n4. Delivery shall be accompanied by:\n   a) Delivery challan\n   b) Quality certificate\n   c) GST invoice"
+        },
+        {
+            "title": "Pricing and Payment",
+            "content": "1. Prices are as per Schedule B and include all applicable taxes.\n2. Payment terms: [30/45/60] days from invoice date.\n3. Payment shall be made via [NEFT/RTGS/Cheque].\n4. The Buyer may withhold payment for disputed items.\n5. GST shall be charged as applicable and shown separately."
+        },
+        {
+            "title": "Quality Standards",
+            "content": "1. All goods shall conform to specifications in Schedule A.\n2. The Vendor warrants that goods shall be:\n   a) Free from defects in material and workmanship\n   b) Fit for intended purpose\n   c) Compliant with applicable standards\n3. Non-conforming goods may be rejected."
+        },
+        {
+            "title": "Inspection and Acceptance",
+            "content": "1. The Buyer shall inspect goods within [7] days of delivery.\n2. Non-conforming goods shall be rejected with written notice.\n3. Rejected goods shall be replaced at Vendor's cost within [15] days.\n4. Acceptance shall not waive latent defect claims."
+        },
+        {
+            "title": "Warranty",
+            "content": "1. The Vendor warrants goods for [12/24] months from delivery.\n2. Warranty covers defects in material and workmanship.\n3. Warranty excludes damage from misuse or unauthorized modification.\n4. Defective goods under warranty shall be repaired/replaced at no cost."
+        },
+        {
+            "title": "Indemnity",
+            "content": "The Vendor shall indemnify the Buyer against:\n1. Claims arising from defective goods\n2. IP infringement claims\n3. Third-party claims due to Vendor's negligence\n\nIndemnity shall be limited to the value of the relevant order."
+        },
+        {
+            "title": "Termination",
+            "content": "1. Either party may terminate with [30] days written notice.\n2. The Buyer may terminate immediately if:\n   a) Vendor fails to meet quality standards\n   b) Delivery delays exceed [15] days\n   c) Vendor becomes insolvent\n3. Pending orders shall be fulfilled or cancelled as mutually agreed."
+        },
+        {
+            "title": "Confidentiality",
+            "content": "1. Both parties shall maintain confidentiality of business information.\n2. Pricing and terms shall not be disclosed to third parties.\n3. This obligation survives termination."
+        },
+        {
+            "title": "General Terms",
+            "content": "1. This Agreement and individual POs constitute the entire agreement.\n2. Force majeure events shall excuse performance for the duration.\n3. Disputes shall be resolved through arbitration in [CITY].\n4. This Agreement shall be governed by Indian law."
+        }
+    ],
+    "placeholders": [
+        {
+            "key": "[DATE]",
+            "description": "Date of agreement"
+        },
+        {
+            "key": "[BUYER NAME]",
+            "description": "Name of the buyer company"
+        },
+        {
+            "key": "[VENDOR NAME]",
+            "description": "Name of the vendor"
+        },
+        {
+            "key": "[GSTIN]",
+            "description": "Vendor GST number"
+        },
+        {
+            "key": "[ADDRESS]",
+            "description": "Business address"
+        },
+        {
+            "key": "[AMOUNT]",
+            "description": "Price amount"
+        },
+        {
+            "key": "[CITY]",
+            "description": "City for dispute resolution"
+        }
+    ],
+    "notes": [
+        "Attach detailed specifications as Schedule A",
+        "Attach price list as Schedule B",
+        "Verify vendor's GST registration",
+        "Consider adding quality audit rights",
+        "Include delivery penalty clause if needed"
+    ]
+}

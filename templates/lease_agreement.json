@@ -1,0 +1,90 @@
+{
+    "template_id": "lease_agreement",
+    "name": "Commercial Lease Agreement Template",
+    "description": "Standard commercial property lease agreement",
+    "contract_type": "Lease Agreement",
+    "sections": [
+        {
+            "title": "Parties",
+            "content": "This Lease Agreement (\"Agreement\") is made on [DATE] between:\n\n[LESSOR NAME], owner of the property described herein, residing at [ADDRESS] (hereinafter referred to as the \"Lessor\")\n\nAND\n\n[LESSEE NAME], [Individual/Company], having address at [ADDRESS] (hereinafter referred to as the \"Lessee\")"
+        },
+        {
+            "title": "Premises",
+            "content": "The Lessor hereby leases to the Lessee:\n\nProperty: [DESCRIPTION]\nAddress: [FULL ADDRESS]\nArea: [SQUARE FEET] sq. ft. (carpet/super built-up)\nFloor: [FLOOR NUMBER]\n\nIncluding: [Fixtures, fittings, parking, etc.]"
+        },
+        {
+            "title": "Term",
+            "content": "1. The lease term shall be [11/24/36] months.\n2. Commencement Date: [START DATE]\n3. Expiry Date: [END DATE]\n4. The lease may be renewed by mutual agreement [30/60] days before expiry.\n\nNote: Leases exceeding 11 months require registration."
+        },
+        {
+            "title": "Rent",
+            "content": "1. Monthly Rent: Rs. [AMOUNT] (Rupees [AMOUNT IN WORDS] only)\n2. Rent shall be paid by the [5th/10th] of each month.\n3. Payment Mode: [Cheque/NEFT/UPI] to [ACCOUNT DETAILS]\n4. Rent escalation: [X%] increase after every [12] months.\n5. Delay in payment shall attract penalty of Rs. [AMOUNT] per day."
+        },
+        {
+            "title": "Security Deposit",
+            "content": "1. The Lessee shall pay a security deposit of Rs. [AMOUNT].\n2. Deposit is equivalent to [X] months' rent.\n3. Deposit shall be refunded within [30] days of vacating, after:\n   a) Adjusting unpaid rent/utilities\n   b) Deducting repair costs for damages beyond normal wear\n4. No interest shall be payable on the deposit."
+        },
+        {
+            "title": "Permitted Use",
+            "content": "1. The premises shall be used for: [Commercial/Office/Retail] purposes.\n2. Specific permitted activities: [DESCRIPTION]\n3. The Lessee shall not:\n   a) Use premises for illegal activities\n   b) Cause nuisance to neighbors\n   c) Make structural alterations without consent"
+        },
+        {
+            "title": "Maintenance and Repairs",
+            "content": "Lessor's Responsibility:\n1. Major structural repairs\n2. External painting (once every [3] years)\n3. Common area maintenance (if applicable)\n\nLessee's Responsibility:\n1. Day-to-day maintenance\n2. Minor repairs up to Rs. [AMOUNT]\n3. Interior painting at own cost\n4. Maintaining fixtures in good condition"
+        },
+        {
+            "title": "Utilities",
+            "content": "1. Electricity: [Lessee's/Lessor's] responsibility\n2. Water: [Lessee's/Lessor's] responsibility\n3. Property Tax: Lessor's responsibility\n4. The Lessee shall ensure timely payment of utility bills.\n5. Meters shall be transferred to Lessee's name where applicable."
+        },
+        {
+            "title": "Termination",
+            "content": "1. Either party may terminate with [2/3] months' written notice.\n2. The Lessor may terminate immediately if:\n   a) Rent is unpaid for [2] consecutive months\n   b) Premises used for unauthorized purposes\n   c) Breach of any material term\n3. The Lessee may terminate immediately if:\n   a) Premises become uninhabitable\n   b) Lessor fails to maintain structure"
+        },
+        {
+            "title": "Handover",
+            "content": "Upon termination:\n1. Lessee shall vacate and hand over premises in good condition.\n2. All keys and access devices shall be returned.\n3. Interior modifications may remain or be removed as agreed.\n4. Joint inspection shall be conducted for damage assessment."
+        },
+        {
+            "title": "General Provisions",
+            "content": "1. Sub-letting is [not permitted/permitted with prior consent].\n2. The Lessee shall comply with all applicable laws and regulations.\n3. Insurance: [Specify responsibilities]\n4. Disputes shall be subject to courts in [CITY].\n5. Stamp duty shall be borne by [Lessee/shared equally]."
+        }
+    ],
+    "placeholders": [
+        {
+            "key": "[DATE]",
+            "description": "Date of agreement"
+        },
+        {
+            "key": "[LESSOR NAME]",
+            "description": "Name of property owner"
+        },
+        {
+            "key": "[LESSEE NAME]",
+            "description": "Name of tenant"
+        },
+        {
+            "key": "[ADDRESS]",
+            "description": "Address details"
+        },
+        {
+            "key": "[AMOUNT]",
+            "description": "Rent/deposit amount"
+        },
+        {
+            "key": "[SQUARE FEET]",
+            "description": "Area of premises"
+        },
+        {
+            "key": "[CITY]",
+            "description": "City for jurisdiction"
+        }
+    ],
+    "notes": [
+        "Execute on appropriate stamp paper",
+        "Register if term exceeds 11 months",
+        "Conduct and document property inspection",
+        "Attach inventory list of fixtures",
+        "Verify property ownership documents",
+        "Check for any existing encumbrances"
+    ]
+}

@@ -1,0 +1,88 @@
+{
+    "template_id": "service_contract",
+    "name": "Service Agreement Template",
+    "description": "Standard service/consulting agreement template for SMEs",
+    "contract_type": "Service Contract",
+    "sections": [
+        {
+            "title": "Parties",
+            "content": "This Service Agreement (\"Agreement\") is made on [DATE] between:\n\n[CLIENT NAME], having its office at [ADDRESS] (hereinafter referred to as the \"Client\")\n\nAND\n\n[SERVICE PROVIDER NAME], having its office at [ADDRESS] (hereinafter referred to as the \"Service Provider\")"
+        },
+        {
+            "title": "Scope of Services",
+            "content": "1. The Service Provider agrees to provide the following services:\n   a) [Service 1]\n   b) [Service 2]\n   c) [Service 3]\n2. Detailed specifications are attached as Schedule A.\n3. Any additional services shall be mutually agreed in writing."
+        },
+        {
+            "title": "Term",
+            "content": "1. This Agreement shall be effective from [START DATE] to [END DATE].\n2. Either party may renew by giving [30] days written notice before expiry.\n3. Renewal terms shall be mutually agreed upon."
+        },
+        {
+            "title": "Fees and Payment",
+            "content": "1. The Client shall pay the Service Provider:\n   a) Fixed fee of Rs. [AMOUNT] for the services; OR\n   b) Monthly retainer of Rs. [AMOUNT]\n2. Payment shall be made within [15/30] days of invoice.\n3. GST shall be charged as applicable.\n4. Late payments shall attract interest at [1.5%] per month."
+        },
+        {
+            "title": "Deliverables and Milestones",
+            "content": "1. The Service Provider shall deliver:\n   Milestone 1: [Description] by [Date]\n   Milestone 2: [Description] by [Date]\n2. Deliverables shall be subject to Client approval.\n3. Client shall provide feedback within [7] business days."
+        },
+        {
+            "title": "Responsibilities",
+            "content": "Service Provider responsibilities:\n1. Perform services professionally and diligently\n2. Provide regular progress updates\n3. Maintain confidentiality of Client information\n\nClient responsibilities:\n1. Provide necessary information and access\n2. Make timely payments\n3. Provide feedback and approvals promptly"
+        },
+        {
+            "title": "Intellectual Property",
+            "content": "1. Pre-existing IP of each party remains with that party.\n2. Work product created under this Agreement shall be owned by the Client upon full payment.\n3. Service Provider may retain copies for portfolio purposes with Client consent."
+        },
+        {
+            "title": "Confidentiality",
+            "content": "1. Both parties shall maintain confidentiality of proprietary information.\n2. Confidential information shall not be disclosed to third parties.\n3. This obligation shall survive for [2] years after termination."
+        },
+        {
+            "title": "Limitation of Liability",
+            "content": "1. The Service Provider's liability shall be limited to the fees paid under this Agreement.\n2. Neither party shall be liable for indirect, consequential, or special damages.\n3. This limitation shall not apply to gross negligence or willful misconduct."
+        },
+        {
+            "title": "Termination",
+            "content": "1. Either party may terminate with [30] days written notice.\n2. Immediate termination may occur for material breach not cured within [15] days.\n3. Upon termination:\n   a) Client shall pay for services rendered\n   b) Service Provider shall deliver completed work\n   c) Both parties shall return confidential information"
+        },
+        {
+            "title": "Dispute Resolution",
+            "content": "1. Disputes shall first be resolved through good faith negotiations.\n2. If unresolved within [30] days, disputes shall be referred to arbitration.\n3. Arbitration shall be conducted in [CITY] under Arbitration and Conciliation Act, 1996."
+        },
+        {
+            "title": "General Provisions",
+            "content": "1. This Agreement constitutes the entire understanding between parties.\n2. Amendments shall be in writing signed by both parties.\n3. Neither party may assign without written consent.\n4. This Agreement shall be governed by Indian law."
+        }
+    ],
+    "placeholders": [
+        {
+            "key": "[DATE]",
+            "description": "Date of agreement"
+        },
+        {
+            "key": "[CLIENT NAME]",
+            "description": "Name of the client"
+        },
+        {
+            "key": "[SERVICE PROVIDER NAME]",
+            "description": "Name of service provider"
+        },
+        {
+            "key": "[ADDRESS]",
+            "description": "Business address"
+        },
+        {
+            "key": "[AMOUNT]",
+            "description": "Fee amount"
+        },
+        {
+            "key": "[CITY]",
+            "description": "City for arbitration"
+        }
+    ],
+    "notes": [
+        "Include detailed scope in Schedule A",
+        "Define acceptance criteria clearly",
+        "Specify GST registration numbers",
+        "Consider including SLA metrics if applicable"
+    ]
+}

@@ -6,12 +6,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# API Configuration
+# API Configuration - Users must provide their own key
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
-
-# Demo Mode API Key (stored securely in backend/secrets)
-# This key is used for demo mode with limited usage
-DEMO_API_KEY = os.getenv("DEMO_OPENAI_API_KEY", "")
 
 # Model Selection Options
 MODEL_OPTIONS = {
@@ -33,22 +29,8 @@ LLM_MODEL = "gpt-4o"  # Default model
 APP_NAME = "Legal Assistant for SMEs"
 APP_VERSION = "1.0.0"
 
-# ----- DEMO MODE SETTINGS -----
-DEMO_MODE_ENABLED = True  # Enable demo mode functionality
-
-# Demo Mode Limits - Only page limit enforced
-DEMO_MAX_PAGES = 10  # Maximum pages in demo mode
-
-# These are kept for reference but NOT enforced in demo mode
-# DEMO_MAX_FILE_SIZE_MB = 5  # DISABLED
-# DEMO_MAX_TOKENS = 80000  # DISABLED  
-# DEMO_RATE_LIMIT_SECONDS = 30  # DISABLED
-
-# User API Mode (no limits)
-USER_MAX_FILE_SIZE_MB = 15  # User API mode file size limit
-
 # File Processing Settings
-MAX_FILE_SIZE_MB = 15  # General max (overridden by mode)
+MAX_FILE_SIZE_MB = 15
 SUPPORTED_EXTENSIONS = [".pdf", ".docx", ".doc", ".txt"]
 
 # Average tokens per page (for estimation)
@@ -95,4 +77,3 @@ PROHIBITION_KEYWORDS = ["shall not", "must not", "may not", "is prohibited from"
 EXPORTS_DIR = "exports"
 LOGS_DIR = "logs"
 TEMPLATES_DIR = "templates"
-

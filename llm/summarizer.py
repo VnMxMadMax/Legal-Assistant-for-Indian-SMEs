@@ -29,7 +29,7 @@ def generate_contract_summary(
         Summary result dictionary
     """
     if llm is None:
-        llm = get_llm_chain(use_demo_key=True)
+        llm = get_llm_chain()
     
     if not llm.is_configured():
         # Generate a basic summary without LLM
@@ -135,7 +135,7 @@ def generate_clause_explanations(
         List of clause explanations
     """
     if llm is None:
-        llm = get_llm_chain(use_demo_key=True)
+        llm = get_llm_chain()
     
     explanations = []
     

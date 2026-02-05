@@ -8,7 +8,7 @@ from typing import Optional, Dict, List, Any
 from openai import OpenAI
 import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from config import LLM_MODEL, DEMO_API_KEY
+from config import LLM_MODEL
 from .prompts import get_system_prompt
 
 # Initialize logger
@@ -20,31 +20,23 @@ class LLMChain:
     LLM Chain for legal contract analysis using OpenAI GPT-4.
     """
     
-    def __init__(self, api_key: Optional[str] = None, model: Optional[str] = None, use_demo_key: bool = False):
+    def __init__(self, api_key: Optional[str] = None, model: Optional[str] = None):
         """
         Initialize the LLM chain.
         
         Args:
             api_key: OpenAI API key (defaults to OPENAI_API_KEY env var)
             model: Model to use (default: from config)
-            use_demo_key: If True, use demo API key if no user key provided
         """
-        # Priority: explicit api_key > env var > demo key (if enabled)
+        # Priority: explicit api_key > env var
         if api_key:
             self.api_key = api_key
-            self.is_demo_mode = False
             logger.info("LLM initialized with user-provided API key")
         elif os.getenv("OPENAI_API_KEY"):
             self.api_key = os.getenv("OPENAI_API_KEY")
-            self.is_demo_mode = False
             logger.info("LLM initialized with environment API key")
-        elif use_demo_key and DEMO_API_KEY:
-            self.api_key = DEMO_API_KEY
-            self.is_demo_mode = True
-            logger.info("LLM initialized with DEMO API key")
         else:
             self.api_key = None
-            self.is_demo_mode = False
             logger.warning("LLM initialized without API key - not configured")
         
         self.model = model or LLM_MODEL
@@ -303,19 +295,18 @@ class LLMChain:
 _llm_chain: Optional[LLMChain] = None
 
 
-def get_llm_chain(api_key: Optional[str] = None, model: Optional[str] = None, use_demo_key: bool = False) -> LLMChain:
+def get_llm_chain(api_key: Optional[str] = None, model: Optional[str] = None) -> LLMChain:
     """
     Get or create the global LLM chain instance.
     
     Args:
         api_key: User-provided API key
         model: Model to use (e.g., 'gpt-4o', 'gpt-4')
-        use_demo_key: If True, use demo API key when no user key provided
     """
     global _llm_chain
     
     # Always create new instance if params differ or no instance exists
     if _llm_chain is None or api_key or model:
-        _llm_chain = LLMChain(api_key=api_key, model=model, use_demo_key=use_demo_key)
+        _llm_chain = LLMChain(api_key=api_key, model=model)
     
     return _llm_chain

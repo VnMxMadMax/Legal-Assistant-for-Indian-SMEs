@@ -16,7 +16,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from config import (
     APP_NAME, APP_VERSION, SUPPORTED_EXTENSIONS, CONTRACT_TYPES,
-    MODEL_OPTIONS, DEMO_API_KEY, DEMO_MAX_PAGES, TOKENS_PER_PAGE
+    MODEL_OPTIONS, TOKENS_PER_PAGE, MAX_FILE_SIZE_MB
 )
 from utils.file_handlers import extract_text
 from utils.text_preprocessing import clean_text, detect_language, segment_paragraphs
@@ -239,28 +239,28 @@ def render_header():
 def render_sidebar():
     """Render the sidebar with upload and settings."""
     with st.sidebar:
-        # ----- API MODE DETECTION -----
+        # ----- API KEY CHECK -----
         user_api_key = st.session_state.get("user_api_key", "")
-        is_demo_mode = not bool(user_api_key) and bool(DEMO_API_KEY)
+        has_api_key = bool(user_api_key)
         
-        # Mode indicator banner
-        if is_demo_mode:
-            st.markdown("""
-            <div style="background: linear-gradient(135deg, #ff9800, #f57c00); 
-                        padding: 0.75rem; border-radius: 8px; margin-bottom: 1rem; text-align: center;">
-                <strong style="color: white;">🎮 Demo Mode (Limited Usage)</strong>
-                <p style="color: white; font-size: 0.8rem; margin: 0.25rem 0 0 0;">
-                    Max {pages} pages per document
-                </p>
-            </div>
-            """.format(pages=DEMO_MAX_PAGES), unsafe_allow_html=True)
-        else:
+        # Status banner
+        if has_api_key:
             st.markdown("""
             <div style="background: linear-gradient(135deg, #4caf50, #388e3c); 
                         padding: 0.75rem; border-radius: 8px; margin-bottom: 1rem; text-align: center;">
-                <strong style="color: white;">🔓 Full Access Mode</strong>
+                <strong style="color: white;">✅ API Key Configured</strong>
                 <p style="color: white; font-size: 0.8rem; margin: 0.25rem 0 0 0;">
-                    No limits • Using your API key
+                    Ready to analyze contracts
+                </p>
+            </div>
+            """, unsafe_allow_html=True)
+        else:
+            st.markdown("""
+            <div style="background: linear-gradient(135deg, #f44336, #d32f2f); 
+                        padding: 0.75rem; border-radius: 8px; margin-bottom: 1rem; text-align: center;">
+                <strong style="color: white;">⚠️ API Key Required</strong>
+                <p style="color: white; font-size: 0.8rem; margin: 0.25rem 0 0 0;">
+                    Enter your OpenAI API key below
                 </p>
             </div>
             """, unsafe_allow_html=True)
@@ -270,7 +270,7 @@ def render_sidebar():
         uploaded_file = st.file_uploader(
             "Choose a file",
             type=["pdf", "docx", "doc", "txt"],
-            help="Supported: PDF, DOCX, DOC, TXT"
+            help=f"Supported: PDF, DOCX, DOC, TXT • Max: {MAX_FILE_SIZE_MB}MB"
         )
         
         st.markdown("---")
@@ -280,10 +280,10 @@ def render_sidebar():
         
         # API Key input
         api_key_input = st.text_input(
-            "Your OpenAI API Key (Optional)",
+            "Your OpenAI API Key",
             type="password",
             value=user_api_key,
-            help="Enter your own API key for unlimited analysis"
+            help="Required - Get your API key from platform.openai.com"
         )
         
         # Save to session state
@@ -292,9 +292,9 @@ def render_sidebar():
             if api_key_input:
                 os.environ["OPENAI_API_KEY"] = api_key_input
         
-        # Info message about API modes
-        if is_demo_mode:
-            st.info("💡 **For full-length contracts (30-40+ pages), please use your own OpenAI API key.**")
+        if not has_api_key:
+            st.warning("🔑 **Please enter your OpenAI API key to use AI features.**")
+            st.markdown("[Get API Key →](https://platform.openai.com/api-keys)")
         
         st.markdown("---")
         
@@ -348,7 +348,7 @@ def render_sidebar():
         st.markdown("---")
         st.markdown(f"<small>Version {APP_VERSION}</small>", unsafe_allow_html=True)
         
-        return uploaded_file, include_llm, show_raw_text, is_demo_mode, selected_model
+        return uploaded_file, include_llm, show_raw_text, selected_model
 
 
 def analyze_contract(text: str, filename: str, use_ai_extraction: bool = True) -> dict:
@@ -891,37 +891,22 @@ def estimate_token_count(text: str) -> int:
     return len(text) // 4
 
 
-def check_demo_limits(text: str, file_size_bytes: int, is_demo_mode: bool) -> tuple:
-    """
-    Check if the document exceeds demo mode limits.
-    Returns (is_valid, error_message)
-    Only page limit is enforced now.
-    """
-    if not is_demo_mode:
-        return True, None
-    
-    # Check page count only
-    page_count = estimate_page_count(text)
-    if page_count > DEMO_MAX_PAGES:
-        return False, f"Document has approximately {page_count} pages, exceeding demo limit of {DEMO_MAX_PAGES} pages. For full-length contracts, please use your own OpenAI API key."
-    
-    return True, None
-
-
 def main():
     """Main application entry point."""
     init_session_state()
     render_header()
     
-    # Sidebar - now returns 5 values
-    uploaded_file, include_llm, show_raw_text, is_demo_mode, selected_model = render_sidebar()
+    # Sidebar - returns 4 values (no more is_demo_mode)
+    uploaded_file, include_llm, show_raw_text, selected_model = render_sidebar()
+    
+    # Check if API key is configured
+    has_api_key = bool(st.session_state.get("user_api_key", ""))
     
     # Main content area
     if uploaded_file is not None:
         # Process uploaded file
         try:
-            mode_str = "DEMO" if is_demo_mode else "USER"
-            logger.info(f"File uploaded: {uploaded_file.name} ({uploaded_file.size} bytes) - Mode: {mode_str}")
+            logger.info(f"File uploaded: {uploaded_file.name} ({uploaded_file.size} bytes)")
             
             # Get file extension
             file_ext = os.path.splitext(uploaded_file.name)[1].lower()
@@ -932,19 +917,8 @@ def main():
                 file_bytes = BytesIO(uploaded_file.read())
                 text, metadata = extract_text(file_bytes=file_bytes, file_extension=file_ext)
             
-            # Check demo limits (page count only)
-            is_valid, error_msg = check_demo_limits(text, uploaded_file.size, is_demo_mode)
-            if not is_valid:
-                st.error(f"❌ **Demo mode limit exceeded.** {error_msg}")
-                return
-            
             st.session_state.contract_text = text
             st.session_state.document_hash = hashlib.sha256(text.encode()).hexdigest()[:16]
-            
-            # Display mode info
-            if is_demo_mode:
-                page_est = estimate_page_count(text)
-                st.info(f"📊 **Demo Mode Analysis:** ~{page_est} pages detected (limit: {DEMO_MAX_PAGES})")
             
             # Log upload
             audit_log = get_audit_logger()
@@ -1050,12 +1024,11 @@ def main():
                     
                     if st.button("Generate Detailed AI Summary"):
                         with st.spinner("Generating AI analysis..."):
-                            # Get LLM chain with selected model and appropriate API key
+                            # Get LLM chain with selected model and user's API key
                             user_key = st.session_state.get("user_api_key", "")
                             llm = get_llm_chain(
                                 api_key=user_key if user_key else None,
-                                model=selected_model,
-                                use_demo_key=is_demo_mode
+                                model=selected_model
                             )
                             summary_result = llm.analyze_contract(
                                 text,

@@ -64,8 +64,8 @@ def extract_clauses_with_ai(text: str, max_tokens: int = 4000) -> Dict[str, Any]
     Returns:
         Dictionary with extracted clauses and metadata
     """
-    # Use demo key if no user key is available
-    llm = get_llm_chain(use_demo_key=True)
+    # Get LLM chain
+    llm = get_llm_chain()
     
     if not llm.is_configured():
         return {

@@ -489,6 +489,12 @@ def extract_entities_with_ai(contract_text: str, llm: Optional[LLMChain] = None)
             # Clean content if it contains markdown code blocks
             content = result["content"].replace("```json", "").replace("```", "").strip()
             
+            # Try to extract JSON if it's wrapped in other text
+            import re
+            json_match = re.search(r'\{[\s\S]*\}', content)
+            if json_match:
+                content = json_match.group(0)
+            
             try:
                 data = json.loads(content)
                 # Map keys to app expectations
@@ -507,8 +513,8 @@ def extract_entities_with_ai(contract_text: str, llm: Optional[LLMChain] = None)
                 
                 return final
                 
-            except json.JSONDecodeError:
-                print("Failed to decode AI entity extraction JSON")
+            except json.JSONDecodeError as e:
+                print(f"Failed to decode AI entity extraction JSON: {e}")
                 
     except Exception as e:
         print(f"Error AI entity extraction: {e}")

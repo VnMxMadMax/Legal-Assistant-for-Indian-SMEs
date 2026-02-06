@@ -96,22 +96,22 @@
 
 ---
 
-### **[3:45 - 4:30] ANALYSIS TAB - AMBIGUITY & SIMILARITY**
+### **[3:45 - 4:30] ANALYSIS TAB - DEEP ANALYSIS**
 
 **[Action: Click on Analysis tab]**
 
 🎙️ **VOICEOVER:**
-> "The Analysis tab provides two powerful features.
+> "The Analysis tab is our comprehensive Deep Analysis dashboard with four key components.
 >
-> First, Ambiguity Detection - the system flags vague terms like 'reasonable', 'approximately', or 'may' that could lead to interpretation disputes later."
-
-**[Action: Show ambiguity results]**
-
-> "Each ambiguous term comes with an explanation and suggested improvement.
+> First, Ambiguity Detection - the system flags vague terms like 'reasonable', 'approximately', or 'may' that could lead to interpretation disputes. Each term gets a suggestion for clearer language.
 >
-> Second, Clause Similarity Matching - we compare your contract clauses against standard SME-friendly templates."
+> Second, Clause Similarity Matching - we compare your clauses against 12 standard SME-friendly templates and show deviation scores.
+>
+> Third, Obligation Analysis - see a breakdown of Prohibitions (must not do), Obligations (must do), and Rights (may do) with their subjects and actions.
+>
+> Finally, Risk Analysis - a detailed view of all risky clauses sorted by severity."
 
-**[Action: Show similarity results]**
+**[Action: Show each section briefly]**
 
 ---
 

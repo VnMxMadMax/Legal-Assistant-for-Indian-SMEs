@@ -124,11 +124,11 @@ streamlit run app.py
 1. **Enter API Key** - Provide your OpenAI API key in the sidebar
 2. **Upload Contract** - Upload PDF, DOCX, or TXT file
 3. **View Analysis** - Navigate through tabs:
-   - 📊 **Overview** - Contract type, risk score, entities
-   - 📋 **Clauses** - Extracted clauses with risk indicators
-   - 🔍 **Analysis** - Ambiguity detection & template comparison
+   - 📊 **Overview** - Contract type, risk score, extracted entities (AI-powered)
+   - 📋 **Clauses** - AI-extracted clauses with risk indicators
+   - 🔍 **Analysis** - Deep analysis: ambiguity detection, clause similarity, obligation breakdown, risk details
    - ✅ **Compliance** - Indian law compliance check
-   - 💡 **Recommendations** - AI-powered suggestions
+   - 💡 **Recommendations** - AI-powered negotiation suggestions
    - 📥 **Export** - Download PDF/JSON reports
 
 ## 🔧 Configuration

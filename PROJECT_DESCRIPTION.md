@@ -58,6 +58,7 @@ We built a **GenAI-powered Legal Assistant** that democratizes legal understandi
 - ✅ Visual Risk Gauge with color coding
 - ✅ AI-generated plain-language summaries
 - ✅ Clause-by-clause key points
+- ✅ Deep Analysis (ambiguity, similarity, obligations)
 - ✅ Indian law compliance scorecard
 - ✅ Negotiation recommendations
 - ✅ PDF & JSON export

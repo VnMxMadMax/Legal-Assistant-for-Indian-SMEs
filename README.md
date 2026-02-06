@@ -109,7 +109,7 @@ legal_assistant/
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/legal-assistant-sme.git
+git clone https://github.com/VnMxMadMax/Legal-Assistant-for-Indian-SMEs.git
 cd legal-assistant-sme
 
 # Install dependencies
@@ -138,17 +138,9 @@ Edit `config.py` to customize:
 - `MAX_FILE_SIZE` - Max upload size (default: 15MB)
 - `CONTRACT_TYPES` - Supported contract types
 
-## ⚠️ Disclaimer
-
-This tool is for educational and informational purposes only. It does not constitute legal advice. Always consult a qualified legal professional before making decisions based on contract analysis.
-
 ## 📄 License
 
 MIT License - see LICENSE file for details.
-
-## 👥 Team
-
-Built for the GenAI Hackathon 2026
 
 ---
 

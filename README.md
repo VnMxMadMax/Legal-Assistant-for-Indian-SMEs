@@ -52,7 +52,6 @@ Our Legal Assistant provides:
 ### Additional Features
 - ✅ **Multilingual support** - Hindi detection with English normalization
 - ✅ **Indian law compliance** - Checks against Indian business practices
-- ✅ **Confidentiality** - Document hashing and audit trails
 - ✅ **Audit logging** - JSON-based operation logs
 
 ## 🛠️ Tech Stack
@@ -116,17 +115,14 @@ cd legal-assistant-sme
 # Install dependencies
 pip install -r requirements.txt
 
-# Set your OpenAI API key
-export OPENAI_API_KEY="your-api-key-here"
-
 # Run the application
 streamlit run app.py
 ```
 
 ## 🎮 Usage
 
-1. **Upload Contract** - Upload PDF, DOCX, or TXT file
-2. **Enter API Key** - Provide your OpenAI API key in the sidebar
+1. **Enter API Key** - Provide your OpenAI API key in the sidebar
+2. **Upload Contract** - Upload PDF, DOCX, or TXT file
 3. **View Analysis** - Navigate through tabs:
    - 📊 **Overview** - Contract type, risk score, entities
    - 📋 **Clauses** - Extracted clauses with risk indicators
@@ -135,16 +131,6 @@ streamlit run app.py
    - 💡 **Recommendations** - AI-powered suggestions
    - 📥 **Export** - Download PDF/JSON reports
 
-## 📸 Screenshots
-
-| Overview Tab | Clauses Tab |
-|-------------|-------------|
-| Risk score, entities, summary | Clause-by-clause with risk indicators |
-
-| Analysis Tab | Compliance Tab |
-|-------------|----------------|
-| Ambiguity detection, similarity matching | Indian law compliance scores |
-
 ## 🔧 Configuration
 
 Edit `config.py` to customize:
@@ -152,15 +138,18 @@ Edit `config.py` to customize:
 - `MAX_FILE_SIZE` - Max upload size (default: 15MB)
 - `CONTRACT_TYPES` - Supported contract types
 
-## 📝 Sample Output
+## ⚠️ Disclaimer
 
-```json
-{
-  "contract_type": "Service Agreement",
-  "risk_score": 4.2,
-  "risk_level": "medium",
-  "clarity_score": 85.3,
-  "clauses_extracted": 15,
-  "compliance_score": 78
-}
-```
+This tool is for educational and informational purposes only. It does not constitute legal advice. Always consult a qualified legal professional before making decisions based on contract analysis.
+
+## 📄 License
+
+MIT License - see LICENSE file for details.
+
+## 👥 Team
+
+Built for the GenAI Hackathon 2026
+
+---
+
+**Made with ❤️ for Indian SMEs**

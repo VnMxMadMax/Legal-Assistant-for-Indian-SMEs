@@ -20,6 +20,8 @@ build/
 
 # Logs (runtime generated)
 logs/*.json
+logs
+RF_Populated_SAP_Services_Software.docx
 
 # OS
 .DS_Store

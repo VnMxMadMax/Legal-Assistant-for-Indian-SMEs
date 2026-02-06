@@ -378,14 +378,80 @@ def analyze_contract(text: str, filename: str, use_ai_extraction: bool = True) -
     logger.info(f"Contract classified as: {contract_type} (confidence: {confidence:.2f})")
     
     # Entity extraction
+    # Regex based first
     entities = extract_entities(cleaned_text)
+    
+    # AI based override if enabled
+    has_api_key = bool(os.getenv("OPENAI_API_KEY"))
+    if use_ai_extraction and has_api_key:
+        try:
+            from llm.summarizer import extract_entities_with_ai
+            logger.info("Extracting entities with AI...")
+            
+            # User Request: "Use full AI to extract every values" (Disable regex for these types)
+            # We explicitly clear regex results to prevent noise (e.g., "India including...")
+            entities["JURISDICTION"] = []
+            entities["MONEY"] = []
+            entities["PARTY"] = []
+            # Note: We keep DATE regex as backup/supplement because dates are strictly formatted
+            
+            ai_entities = extract_entities_with_ai(cleaned_text)
+            
+            if ai_entities:
+                # Override regex results completely with AI results for cleaner data
+                from nlp.entity_recognizer import Entity
+                
+                # JURISDICTION
+                if ai_entities.get("JURISDICTION"):
+                    entities["JURISDICTION"] = [
+                        Entity(text=j, entity_type="JURISDICTION", start=0, end=0, context="Extracted by AI")
+                        for j in ai_entities["JURISDICTION"] if isinstance(j, str) and j.strip()
+                    ]
+                
+                # PARTY
+                if ai_entities.get("PARTY"):
+                    entities["PARTY"] = [
+                        Entity(text=p, entity_type="PARTY", start=0, end=0, context="Extracted by AI")
+                        for p in ai_entities["PARTY"] if isinstance(p, str) and p.strip()
+                    ]
+                
+                # MONEY - pure AI extraction as requested
+                if ai_entities.get("MONEY"):
+                    valid_money = []
+                    indicators = ["rs", "inr", "₹", "rupee", "lakh", "lac", "crore", "usd", "$", "dollar"]
+                    for m in ai_entities["MONEY"]:
+                        if isinstance(m, str):
+                            clean_m = m.lower().strip()
+                            # Apply loose currency filter for AI (trusting AI more but still checking context)
+                            if any(ind in clean_m for ind in indicators) or any(char.isdigit() for char in m):
+                                valid_money.append(
+                                     Entity(text=m, entity_type="MONEY", start=0, end=0, context="Extracted by AI")
+                                )
+                    if valid_money:
+                        entities["MONEY"] = valid_money
+                
+                # DATES - Merge AI dates with regex (Regex is usually better for specific formats, AI for "Effective Date")
+                if ai_entities.get("DATE"):
+                     # We'll prepend AI dates as they are likely key dates like 'Effective Date'
+                     ai_dates = [
+                        Entity(text=d, entity_type="DATE", start=0, end=0, context="Extracted by AI")
+                        for d in ai_entities["DATE"] if isinstance(d, str) and d.strip()
+                     ]
+                     # Keep regex dates that don't overlap too much?
+                     # User wants AI. Let's make AI primary.
+                     entities["DATE"] = ai_dates + [e for e in entities["DATE"] if e.text not in [d.text for d in ai_dates]]
+
+                logger.info(f"AI entity extraction complete. Overwrote regex results.")
+        except Exception as e:
+            logger.error(f"AI entity extraction failed: {e}")
+
     result["entities"] = entities_to_dict(entities)
     logger.debug(f"Extracted entities: {len(result['entities'])} types")
     
     # Clause extraction - Try AI first, fallback to regex
     ai_clauses = None
-    # Check for either user API key or demo API key
-    has_api_key = os.getenv("OPENAI_API_KEY") or DEMO_API_KEY
+    # Check for user API key
+    has_api_key = bool(os.getenv("OPENAI_API_KEY"))
     if use_ai_extraction and has_api_key:
         logger.info("Attempting AI-powered clause extraction...")
         ai_result = extract_clauses_with_ai(cleaned_text)
@@ -447,6 +513,45 @@ def analyze_contract(text: str, filename: str, use_ai_extraction: bool = True) -
     result["risk_summary"] = contract_risk.summary
     result["top_concerns"] = contract_risk.top_concerns
     result["recommendations"] = contract_risk.recommendations
+    
+    # Generate AI-powered recommendations if LLM is enabled
+    if use_ai_extraction and os.getenv("OPENAI_API_KEY"):
+        try:
+            logger.info("Generating AI recommendations...")
+            from llm.summarizer import generate_ai_recommendations
+            from risk.risk_scorer import RiskLevel
+            
+            # Filter for high/medium risk clauses
+            risky_clauses = [
+                cr.to_dict() for cr in clause_risks 
+                if cr.risk_level in [RiskLevel.HIGH, RiskLevel.MEDIUM]
+            ]
+            
+            ai_recs = generate_ai_recommendations(
+                contract_type=result.get("contract_type", "General"),
+                risk_score=result["risk_score"],
+                high_risk_clauses=risky_clauses
+            )
+            
+            if ai_recs:
+                result["recommendations"] = ai_recs
+                logger.info(f"Generated {len(ai_recs)} AI recommendations")
+            
+            # Generate AI-powered top concerns
+            from llm.summarizer import generate_ai_top_concerns
+            ai_concerns = generate_ai_top_concerns(
+                contract_type=result.get("contract_type", "General"),
+                risk_score=result["risk_score"],
+                high_risk_clauses=risky_clauses
+            )
+            
+            if ai_concerns:
+                result["top_concerns"] = ai_concerns
+                logger.info(f"Generated {len(ai_concerns)} AI top concerns")
+                
+        except Exception as e:
+            logger.error(f"Failed to generate AI recommendations/concerns: {e}")
+
     result["clause_risks"] = [cr.to_dict() for cr in clause_risks]
     
     # Specialized clause analysis
@@ -526,12 +631,118 @@ def render_entities(entities: dict):
             st.info("No jurisdiction identified")
 
 
+# Import advanced NLP modules
+from nlp.ambiguity_detector import detect_ambiguities, get_top_ambiguities
+from nlp.clause_matcher import match_clauses_to_templates
+from nlp.obligation_analyzer import analyze_obligations, get_obligations_summary, get_high_risk_obligations, ObligationType
+
+def render_advanced_analysis(text: str, clauses: list, contract_type: str):
+    """Render advanced NLP analysis tab."""
+    st.markdown("### 🔬 Advanced Contract Analytics")
+    
+    col1, col2, col3 = st.columns(3)
+    
+    # 1. Ambiguity Analysis
+    with st.spinner("Analyzing ambiguity..."):
+        ambiguity_report = detect_ambiguities(text)
+    
+    with col1:
+        st.metric("Clarity Score", f"{ambiguity_report.clarity_score}/100", 
+                 delta="Clear" if ambiguity_report.clarity_score > 80 else "-Ambiguous",
+                 delta_color="normal" if ambiguity_report.clarity_score > 80 else "inverse")
+    
+    # 2. Obligation Analysis
+    with st.spinner("Mapping obligations..."):
+        obligations = analyze_obligations(text)
+        ob_summary = get_obligations_summary(obligations)
+    
+    with col2:
+        st.metric("Total Obligations", ob_summary["total"], 
+                 f"{ob_summary['by_type']['obligations']} mandatory")
+                 
+    # 3. Standardization
+    with st.spinner("Checking standards..."):
+        std_report = match_clauses_to_templates(clauses, contract_type)
+        
+    with col3:
+        st.metric("Standard Score", f"{std_report.standard_compliance_score:.0f}/100",
+                 f"{std_report.matched_clauses}/{std_report.total_clauses} matched")
+
+    st.divider()
+
+    # Ambiguity Details
+    with st.expander("🔍 Ambiguity Detection Details", expanded=False):
+        st.markdown(f"**Analysis:** {ambiguity_report.summary}")
+        if ambiguity_report.flags:
+            st.dataframe([
+                {"Term": f["term"], "Issue": f["category"].replace("_", " ").title(), "Suggestion": f["suggestion"], "Context": f["context"]}
+                for f in get_top_ambiguities(ambiguity_report)
+            ])
+        else:
+            st.success("No significant ambiguities found.")
+
+    # Obligation Breakdown
+    with st.expander("⚖️ Obligations, Rights & Prohibitions", expanded=False):
+        tabs = st.tabs(["🔴 Prohibitions (Must Not)", "🟢 Obligations (Must)", "🔵 Rights (May)"])
+        
+        high_risk_obs = get_high_risk_obligations(obligations)
+        if high_risk_obs:
+            st.error(f"⚠️ Found {len(high_risk_obs)} High-Risk Obligations (e.g., Penalties, Prohibitions)")
+        
+        with tabs[0]:
+            prohibitions = [o for o in obligations if o.obligation_type == ObligationType.PROHIBITION]
+            if prohibitions:
+                for p in prohibitions:
+                    st.markdown(f"- **{p.subject}**: {p.action} {f'_(If: {p.condition})_' if p.condition else ''}")
+            else:
+                st.info("No explicit prohibitions found.")
+                
+        with tabs[1]:
+            mandatory = [o for o in obligations if o.obligation_type == ObligationType.OBLIGATION]
+            if mandatory:
+                for m in mandatory[:10]: # Limit for brevity
+                    st.markdown(f"- **{m.subject}**: {m.action}")
+                if len(mandatory) > 10:
+                    st.caption(f"And {len(mandatory)-10} more...")
+            else:
+                st.info("No mandatory obligations detected.")
+                
+        with tabs[2]:
+            rights = [o for o in obligations if o.obligation_type == ObligationType.RIGHT]
+            if rights:
+                for r in rights[:10]:
+                    st.markdown(f"- **{r.subject}**: {r.action}")
+            else:
+                st.info("No explicit rights detected.")
+
+    # Standardization Check
+    with st.expander("📏 Standardization & Template Compliance", expanded=False):
+        st.markdown(f"**Analysis:** {std_report.summary}")
+        if std_report.non_standard_clauses:
+            st.warning(f"**Non-Standard Clauses:** {', '.join(std_report.non_standard_clauses)}")
+        
+        # Show comparison table for low match clauses
+        low_sim = [m for m in std_report.matches if m.match_level in ["low", "no_match"]]
+        if low_sim:
+            st.markdown("### Significant Deviations")
+            for m in low_sim[:5]:
+                st.text(f"Clause: {m.clause_title} (vs Standard {m.template_clause_title})")
+                st.caption(f"Similarity: {m.similarity_score}% - {', '.join(m.deviations[:2])}")
+
+    
+    
 def render_clauses(clauses: list, clause_risks: list):
     """Render extracted clauses with risk indicators."""
     st.markdown("### 📋 Contract Clauses")
     
+    if not os.getenv("OPENAI_API_KEY"):
+        st.warning("⚠️ **Using Basic Regex Mode** - Enter your OpenAI API key in the sidebar for AI analysis & risk scoring.")
+    
     if not clauses:
-        st.info("No clauses extracted. Try uploading a contract with clear section headers.")
+        if not os.getenv("OPENAI_API_KEY"):
+            st.warning("🔑 **API Key Required** - Enter your OpenAI API key in the sidebar to enable AI-powered clause extraction.")
+        else:
+            st.info("No clauses extracted. Try uploading a contract with clear section headers.")
         return
     
     # Create risk lookup
@@ -591,6 +802,66 @@ def render_clauses(clauses: list, clause_risks: list):
                 st.markdown("**💡 Suggested Alternatives:**")
                 for alt in risk_info["alternatives"][:2]:
                     st.markdown(f"- {alt}")
+
+
+
+def render_risk_analysis(clause_risks: list, risk_score: float):
+    """Render risk analysis dashboard."""
+    st.markdown("### ⚠️ Risk Analysis")
+    
+    col1, col2 = st.columns([1, 2])
+    
+    with col1:
+        # Risk gauge
+        if risk_score >= 7.0:
+            color = "#f56565"  # Red
+            level = "HIGH RISK"
+        elif risk_score >= 4.0:
+            color = "#ed8936"  # Orange
+            level = "MEDIUM RISK"
+        else:
+            color = "#48bb78"  # Green
+            level = "LOW RISK"
+            
+        st.markdown(f"""
+        <div style="text-align: center; padding: 1.5rem; background: {color}; border-radius: 8px; margin-bottom: 1rem;">
+            <h1 style="color: white; margin: 0; font-size: 3rem;">{risk_score:.1f}</h1>
+            <h3 style="color: white; margin: 0;">{level}</h3>
+            <p style="color: white; margin: 0;">Risk Score</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+    with col2:
+        # High risk summary
+        high_risks = [r for r in clause_risks if r.get("risk_score", 0) >= 7]
+        med_risks = [r for r in clause_risks if 4 <= r.get("risk_score", 0) < 7]
+        
+        st.markdown(f"**Found {len(clause_risks)} risky clauses:**")
+        st.markdown(f"- 🔴 **{len(high_risks)} High Risk** clauses")
+        st.markdown(f"- 🟠 **{len(med_risks)} Medium Risk** clauses")
+        
+        if not clause_risks:
+            st.success("✅ No significant risks detected based on standard patterns.")
+
+    st.divider()
+    
+    # Detailed Risk List
+    if clause_risks:
+        st.markdown("#### 📋 Detailed Issues")
+        for risk in sorted(clause_risks, key=lambda x: x.get("risk_score", 0), reverse=True):
+            score = risk.get("risk_score", 0)
+            if score >= 7:
+                icon = "🔴"
+            elif score >= 4:
+                icon = "🟠"
+            else:
+                icon = "🟢"
+                
+            with st.expander(f"{icon} {risk.get('clause_id', 'Unknown Clause')}: {risk.get('risk_category', 'General')} (Score: {score})"):
+                st.markdown(f"**Issue:** {risk.get('explanation', 'No details available')}")
+                st.info(f"**Clause Text:** \"{risk.get('clause_content', '')[:300]}...\"")
+                if risk.get("recommendation"):
+                     st.markdown(f"**💡 Recommendation:** {risk.get('recommendation')}")
 
 
 def render_compliance(compliance: dict, law_notes: list):
@@ -773,7 +1044,10 @@ def render_recommendations(recommendations: list, top_concerns: list):
             for i, rec in enumerate(recommendations[:5], 1):
                 st.markdown(f"{i}. {rec}")
         else:
-            st.info("No specific recommendations")
+            if not os.getenv("OPENAI_API_KEY"):
+                st.warning("🔑 API Key Required for AI recommendations")
+            else:
+                st.info("No specific recommendations")
 
 
 def generate_pdf_report(result: dict) -> bytes:
@@ -917,6 +1191,11 @@ def main():
                 file_bytes = BytesIO(uploaded_file.read())
                 text, metadata = extract_text(file_bytes=file_bytes, file_extension=file_ext)
             
+            # BLOCKER: Only proceed if API key is present
+            if not os.getenv("OPENAI_API_KEY"):
+                st.info("👋 **Welcome!** Please enter your OpenAI API key in the sidebar to start the analysis.")
+                st.stop()
+                
             st.session_state.contract_text = text
             st.session_state.document_hash = hashlib.sha256(text.encode()).hexdigest()[:16]
             
@@ -938,7 +1217,7 @@ def main():
             # Analyze contract (pass selected model)
             with st.spinner("🔍 Analyzing contract..."):
                 result = analyze_contract(text, uploaded_file.name, use_ai_extraction=include_llm)
-                result["api_mode"] = "demo" if is_demo_mode else "user"
+                result["api_mode"] = "user"
                 result["model_used"] = selected_model
                 st.session_state.analysis_result = result
             
@@ -995,11 +1274,19 @@ def main():
                 )
             
             with tab3:
-                # Ambiguity Detection
-                render_ambiguity(result.get("ambiguity", {}))
+                # Advanced Analysis (Ambiguity, Standards, Obligations)
+                render_advanced_analysis(
+                    st.session_state.contract_text,
+                    result.get("clauses", []),
+                    result.get("contract_type", "General")
+                )
+                
+                # Show Risk Analysis here too 
                 st.markdown("---")
-                # Clause Similarity Matching
-                render_similarity(result.get("similarity", {}))
+                render_risk_analysis(
+                    result.get("clause_risks", []),
+                    result.get("risk_score", 0)
+                )
             
             with tab4:
                 render_compliance(
@@ -1014,7 +1301,7 @@ def main():
                 )
                 
                 # LLM-powered summary if enabled
-                if include_llm and (os.getenv("OPENAI_API_KEY") or DEMO_API_KEY):
+                if include_llm and os.getenv("OPENAI_API_KEY"):
                     st.markdown("---")
                     st.markdown("### 🤖 AI-Powered Analysis")
                     

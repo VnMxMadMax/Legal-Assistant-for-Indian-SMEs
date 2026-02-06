@@ -52,21 +52,32 @@ ENTITY_PATTERNS = {
         r'\b(\d{4}-\d{2}-\d{2})\b',
     ],
     "MONEY": [
-        # INR with various formats
-        r'(?:Rs\.?|INR|₹)\s*([\d,]+(?:\.\d{2})?)\s*(?:/-)?(?:\s*\([^)]+\))?',
-        r'([\d,]+(?:\.\d{2})?)\s*(?:Rs\.?|INR|₹|rupees?)',
-        # With words: lakhs, crores
-        r'(?:Rs\.?|INR|₹)?\s*([\d,]+(?:\.\d{2})?)\s*(?:lakhs?|lacs?|crores?|thousands?|millions?)',
-        # Written amounts
-        r'(?:Rupees?|Indian Rupees?)\s+([A-Za-z\s]+(?:Lakh|Lac|Crore|Thousand|Hundred)[A-Za-z\s]*)',
+        # Symbols and Abbreviations
+        r'(?:Rs\.?|INR|₹|Rupees?)\s*([\d,]*\d[\d,.]*)(?:/-)?(?:\s*\([^)]+\))?',
+        r'(?:Rs\.?|INR|₹|Rupees?)\.\s*([\d,]*\d[\d,.]*)',
+        
+        # Suffix format: 1000 Rs, 500 Rupees
+        r'([\d,]*\d[\d,.]*)\s*(?:Rs\.?|INR|₹|rupees?|rupee)',
+        
+        # Text Units: 5 Lakhs, 10 Crores
+        r'(?:Rs\.?|INR|₹)?\s*([\d,.]*)\s*(?:lakhs?|lacs?|crores?|thousands?|millions?|billions?)(?:\s+rupees?)?',
+        
+        # Combined: Rs. 5 Lakhs, INR 10 Crores
+        r'(?:Rs\.?|INR|₹)\s*([\d,.]*)\s*(?:lakhs?|lacs?|crores?|thousands?|millions?)',
+        
+        # Written amounts start with Rupees
+        r'(?:Rupees?|Indian Rupees?)\s+([A-Za-z\s\-]+(?:Lakh|Lac|Crore|Thousand|Hundred|Only)[A-Za-z\s\-]*)',
+        
+        # Amounts in words followed by (Rs. X)
+        r'([A-Za-z\s\-]+(?:Lakh|Lac|Crore|Thousand|Hundred)[A-Za-z\s\-]*)\s*\((?:Rs\.?|INR|₹)?\s*[\d,.]+\)',
     ],
     "JURISDICTION": [
-        # Courts
-        r'(?:courts?\s+(?:of|in|at)\s+)([A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+)*)',
+        # Courts - limit to 4 words to avoid capturing full sentences
+        r'(?:courts?\s+(?:of|in|at)\s+)([A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+){0,3})',
         r'(?:High Court of\s+)([A-Z][A-Za-z]+)',
         r'(?:District Court\s+(?:of|at)\s+)([A-Z][A-Za-z]+)',
-        # Governing law
-        r'(?:laws?\s+of\s+)([A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+)*)',
+        # Governing law - limit to 4 words
+        r'(?:laws?\s+of\s+)([A-Z][A-Za-z]+(?:\s+[A-Z][A-Za-z]+){0,3})',
         r'(?:governed by\s+(?:the\s+)?laws?\s+of\s+)([A-Z][A-Za-z]+)',
         # City names for jurisdiction
         r'(?:jurisdiction\s+(?:of|in|at)\s+)([A-Z][A-Za-z]+)',
@@ -117,13 +128,41 @@ def extract_entities(text: str) -> Dict[str, List[Entity]]:
             for match in re.finditer(pattern, text, re.IGNORECASE):
                 entity_text = match.group(1) if match.lastindex else match.group(0)
                 
+                # Validation filters
+                clean_text = entity_text.strip().strip(".,;:\"'")
+                
+                # Filter out garbage matches
+                if len(clean_text) < 2:
+                    continue
+                    
+                # Fix for JURISDICTION noise
+                if entity_type == "JURISDICTION":
+                    lower_text = clean_text.lower()
+                    if any(x in lower_text for x in ["India including the Indian","law", "contract", "agreement", "party", "parties", "court", "courts", "place", "order", "the Land and there"]):
+                        continue
+                    # Reject if it looks like a sentence (too many spaces)
+                    if clean_text.count(" ") > 3:
+                        continue
+                        
+                # Fix for MONEY noise - Mandatory currency indicator check
+                if entity_type == "MONEY":
+                    if clean_text.strip() in [",", ".", "-"]:
+                        continue
+                        
+                    # Strict check: Must contain at least one currency indicator
+                    # This filters out random numbers like "500" or "10,000" that aren't explicitly money
+                    lower_val = clean_text.lower()
+                    indicators = ["rs", "inr", "₹", "rupee", "lakh", "lac", "crore","rs.","Rs.","INR","Rs","Rs."]
+                    if not any(ind in lower_val for ind in indicators):
+                        continue
+                
                 # Get context
                 start_ctx = max(0, match.start() - 30)
                 end_ctx = min(len(text), match.end() + 30)
                 context = text[start_ctx:end_ctx].strip()
                 
                 entity = Entity(
-                    text=entity_text.strip(),
+                    text=clean_text,
                     entity_type=entity_type,
                     start=match.start(),
                     end=match.end(),
@@ -132,9 +171,12 @@ def extract_entities(text: str) -> Dict[str, List[Entity]]:
                 
                 # Add normalized value for certain types
                 if entity_type == "MONEY":
-                    entity.normalized_value = _normalize_money(entity_text)
+                    entity.normalized_value = _normalize_money(clean_text)
+                    # Skip if normalization fails or yields 0/tiny values (likely noise)
+                    if not entity.normalized_value or entity.normalized_value < 1:
+                         continue
                 elif entity_type == "DATE":
-                    entity.normalized_value = _normalize_date(entity_text)
+                    entity.normalized_value = _normalize_date(clean_text)
                 
                 entities[entity_type].append(entity)
     

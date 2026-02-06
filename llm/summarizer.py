@@ -308,3 +308,209 @@ def generate_negotiation_points(
         "negotiation_points": points,
         "priority_order": [p["clause"] for p in points]
     }
+
+
+def generate_ai_recommendations(
+    contract_type: str,
+    risk_score: float,
+    high_risk_clauses: List[Dict],
+    llm: Optional[LLMChain] = None
+) -> List[str]:
+    """
+    Generate specific, actionable recommendations using LLM.
+    
+    Args:
+        contract_type: Type of contract
+        risk_score: Overall risk score
+        high_risk_clauses: List of high-risk clauses
+        llm: Optional LLM chain instance
+        
+    Returns:
+        List of recommended actions
+    """
+    if llm is None:
+        llm = get_llm_chain()
+    
+    if not llm.is_configured():
+        return []
+        
+    # Format high risk clauses for prompt
+    clauses_text = ""
+    if high_risk_clauses:
+        for clause in high_risk_clauses[:5]:
+            title = clause.get("clause_title", "Clause")
+            if isinstance(clause, dict):
+                content = clause.get("text_excerpt", "") or clause.get("content", "") or ""
+            else:
+                content = getattr(clause, "content", "")
+            
+            # Create a short excerpt
+            short_content = str(content)[:200].replace("\n", " ") if content else "Check clause text"
+            clauses_text += f"- {title}: {short_content}...\n"
+    else:
+        clauses_text = "No specific high risk clauses identified. Focus on general best practices."
+    
+    from .prompts import get_prompt
+    import re
+    
+    try:
+        prompt = get_prompt(
+            "recommendations",
+            contract_type=contract_type,
+            risk_score=f"{risk_score:.1f}",
+            high_risk_clauses=clauses_text
+        )
+        
+        result = llm.query(prompt, max_tokens=1000)
+        
+        if result["success"]:
+            content = result["content"]
+            recommendations = []
+            for line in content.split('\n'):
+                line = line.strip()
+                # Check for list markers
+                if line and (line.startswith('-') or line.startswith('*') or (line[0].isdigit() and line[1:3] in ['. ', ') '])):
+                     # Remove marker
+                     clean = re.sub(r'^[\d\-\*\.]+\s*', '', line).strip()
+                     if clean:
+                         recommendations.append(clean)
+            return recommendations
+            
+    except Exception as e:
+        print(f"Error generating recommendations: {e}")
+        
+    return []
+
+
+def generate_ai_top_concerns(
+    contract_type: str,
+    risk_score: float,
+    high_risk_clauses: List[Dict],
+    llm: Optional[LLMChain] = None
+) -> List[str]:
+    """
+    Generate top concerns using LLM.
+    
+    Args:
+        contract_type: Type of contract
+        risk_score: Overall risk score
+        high_risk_clauses: List of high-risk clauses
+        llm: Optional LLM chain instance
+        
+    Returns:
+        List of top concerns
+    """
+    if llm is None:
+        llm = get_llm_chain()
+    
+    if not llm.is_configured():
+        return []
+        
+    # Format high risk clauses for prompt
+    clauses_text = ""
+    if high_risk_clauses:
+        for clause in high_risk_clauses[:5]:
+            title = clause.get("clause_title", "Clause")
+            if isinstance(clause, dict):
+                content = clause.get("text_excerpt", "") or clause.get("content", "") or ""
+            else:
+                content = getattr(clause, "content", "")
+            
+            # Create a short excerpt
+            short_content = str(content)[:200].replace("\n", " ") if content else "Check clause text"
+            clauses_text += f"- {title}: {short_content}...\n"
+    else:
+        clauses_text = "No specific high risk clauses identified. Focus on general best practices."
+    
+    from .prompts import get_prompt
+    import re
+    
+    try:
+        prompt = get_prompt(
+            "top_concerns",
+            contract_type=contract_type,
+            risk_score=f"{risk_score:.1f}",
+            high_risk_clauses=clauses_text
+        )
+        
+        result = llm.query(prompt, max_tokens=1000)
+        
+        if result["success"]:
+            content = result["content"]
+            concerns = []
+            for line in content.split('\n'):
+                line = line.strip()
+                # Check for list markers
+                if line and (line.startswith('-') or line.startswith('*') or (line[0].isdigit() and line[1:3] in ['. ', ') '])):
+                     # Remove marker
+                     clean = re.sub(r'^[\d\-\*\.]+\s*', '', line).strip()
+                     if clean:
+                         concerns.append(clean)
+            return concerns
+            
+    except Exception as e:
+        print(f"Error generating top concerns: {e}")
+        
+    return []
+
+
+def extract_entities_with_ai(contract_text: str, llm: Optional[LLMChain] = None) -> Dict[str, List]:
+    """
+    Extract key entities using LLM (to improve precision over regex).
+    
+    Args:
+        contract_text: The contract text
+        llm: Optional LLM chain instance
+        
+    Returns:
+        Dictionary of entities
+    """
+    if llm is None:
+        llm = get_llm_chain()
+    
+    if not llm.is_configured():
+        return {}
+        
+    from .prompts import get_prompt
+    import json
+    
+    try:
+        # Truncate text if needed
+        text_preview = contract_text[:10000]
+        
+        prompt = get_prompt(
+            "entity_extraction",
+            contract_text=text_preview
+        )
+        
+        result = llm.query(prompt, max_tokens=1000)
+        
+        if result["success"]:
+            # Clean content if it contains markdown code blocks
+            content = result["content"].replace("```json", "").replace("```", "").strip()
+            
+            try:
+                data = json.loads(content)
+                # Map keys to app expectations
+                mapped = {
+                    "PARTY": data.get("parties", []),
+                    "JURISDICTION": data.get("jurisdiction", []),
+                    "DATE": [data.get("effective_date")] if data.get("effective_date") else [],
+                    "MONEY": data.get("financial_values", []),
+                    "DURATION": [data.get("duration")] if data.get("duration") else []
+                }
+                
+                # Filter out nulls/empties
+                final = {}
+                for k, v in mapped.items():
+                    final[k] = [x for x in v if x and str(x).lower() != "null" and str(x).lower() != "none"]
+                
+                return final
+                
+            except json.JSONDecodeError:
+                print("Failed to decode AI entity extraction JSON")
+                
+    except Exception as e:
+        print(f"Error AI entity extraction: {e}")
+        
+    return {}

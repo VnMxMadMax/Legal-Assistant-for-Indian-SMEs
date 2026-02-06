@@ -258,13 +258,70 @@ def get_prompt(prompt_type: str, **kwargs) -> str:
         "compliance": COMPLIANCE_CHECK_PROMPT,
         "translate": HINDI_TRANSLATION_PROMPT,
         "quick": QUICK_ANALYSIS_PROMPT,
-        "negotiate": NEGOTIATION_ADVICE_PROMPT
+        "negotiate": NEGOTIATION_ADVICE_PROMPT,
+        "recommendations": RECOMMENDATIONS_PROMPT,
+        "top_concerns": TOP_CONCERNS_PROMPT,
+        "entity_extraction": ENTITY_EXTRACTION_PROMPT
     }
     
     if prompt_type not in prompts:
         raise ValueError(f"Unknown prompt type: {prompt_type}")
     
     return prompts[prompt_type].format(**kwargs)
+
+
+# Recommendations prompt
+RECOMMENDATIONS_PROMPT = """Based on the contract analysis, provide a list of specific, actionable recommendations.
+
+CONTRACT TYPE: {contract_type}
+RISK SCORE: {risk_score}/10
+
+HIGH RISK CLAUSES:
+{high_risk_clauses}
+
+Provide 5-7 distinct, actionable recommendations for the user. 
+Each recommendation should be a single clear sentence starting with an action verb.
+Focus on:
+1. Negotiating specific terms
+2. Clarifying ambiguities
+3. Risk mitigation steps
+4. Compliance actions
+
+Format as a simple list."""
+
+
+# Top concerns prompt
+TOP_CONCERNS_PROMPT = """Based on the contract analysis, identify the top 3-5 most critical concerns for the user.
+
+CONTRACT TYPE: {contract_type}
+RISK SCORE: {risk_score}/10
+
+HIGH RISK CLAUSES:
+{high_risk_clauses}
+
+Provide 3-5 distinct, critical concerns.
+Each concern should be brief (1-2 sentences) and clearly explain the specific risk.
+Focus on financial liability, legal exposure, or unfair terms.
+
+Format as a simple list."""
+
+
+# Entity extraction prompt
+ENTITY_EXTRACTION_PROMPT = """Extract the following key entities from the contract text below.
+
+CONTRACT TEXT:
+{contract_text}
+
+Entities to extract:
+1. **PARTIES**: Full legal names of companies or individuals involved.
+2. **JURISDICTION**: The specific city, state, or court mentioned for dispute resolution. exclude generic terms like "courts of india".
+3. **GOVERNING LAW**: The specific laws governing the contract (e.g., "Laws of India", "Laws of Maharashtra").
+4. **EFFECTIVE DATE**: The start date of the agreement.
+5. **TERM/DURATION**: The length of the contract.
+6. **FINANCIAL VALUES**: Key monetary amounts (Total Value, Monthly Fee, Penalties).
+
+Format as a JSON object with keys: parties (list), jurisdiction (list), governing_law (list), effective_date (string), duration (string), financial_values (list).
+If not found, return empty lists or null."""
 
 
 def get_system_prompt() -> str:

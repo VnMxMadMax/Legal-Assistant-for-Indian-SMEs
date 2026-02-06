@@ -44,10 +44,10 @@ We built a **GenAI-powered Legal Assistant** that democratizes legal understandi
 ### Core NLP Capabilities
 - ✅ **Contract Classification** - Auto-identifies 6 contract types
 - ✅ **AI Clause Extraction** - GPT-4o powered hierarchical extraction
-- ✅ **Entity Recognition** - Parties, dates, amounts, jurisdiction
+- ✅ **Entity Recognition** - Parties, dates, amounts, jurisdiction (AI-powered)
 - ✅ **Obligation Analysis** - Identifies shall/must/may patterns
 - ✅ **Ambiguity Detection** - Flags vague terms
-- ✅ **Similarity Matching** - Compares to standard templates
+- ✅ **Similarity Matching** - Compares to 12 standard templates
 
 ### Risk Assessment
 - ✅ **Clause-Level Scoring** - Low/Medium/High (0-10 scale)
@@ -58,7 +58,7 @@ We built a **GenAI-powered Legal Assistant** that democratizes legal understandi
 - ✅ Visual Risk Gauge with color coding
 - ✅ AI-generated plain-language summaries
 - ✅ Clause-by-clause key points
-- ✅ Deep Analysis (ambiguity, similarity, obligations)
+- ✅ Deep Analysis (ambiguity, similarity, obligations, risk details)
 - ✅ Indian law compliance scorecard
 - ✅ Negotiation recommendations
 - ✅ PDF & JSON export
@@ -91,8 +91,8 @@ We built a **GenAI-powered Legal Assistant** that democratizes legal understandi
 | **LLM** | OpenAI GPT-4o |
 | **NLP** | Python + Regex |
 | **UI** | Streamlit |
-| **File Parsing** | PyPDF2, python-docx |
-| **Deployment** | Streamlit Cloud |
+| **File Parsing** | pdfplumber, python-docx |
+| **PDF Export** | FPDF2 |
 
 ### Compliance with Hackathon Requirements
 ✅ LLM: GPT-4o for legal reasoning  
@@ -107,7 +107,7 @@ We built a **GenAI-powered Legal Assistant** that democratizes legal understandi
 
 ```
 legal_assistant/
-├── app.py                 # Main Streamlit app
+├── app.py                 # Main Streamlit app (1500+ lines)
 ├── config.py              # Configuration
 ├── nlp/                   # NLP modules (8 files)
 ├── risk/                  # Risk assessment (3 files)
@@ -116,7 +116,7 @@ legal_assistant/
 └── templates/             # Contract templates (4 files)
 ```
 
-**Code Metrics**: ~5,000+ lines across 20+ modules
+**Code Metrics**: ~6,000+ lines across 20+ modules
 
 ---
 

@@ -408,12 +408,20 @@ def analyze_contract(text: str, filename: str, use_ai_extraction: bool = True) -
                         for j in ai_entities["JURISDICTION"] if isinstance(j, str) and j.strip()
                     ]
                 
-                # PARTY
+                # PARTY - filter out placeholder patterns
                 if ai_entities.get("PARTY"):
-                    entities["PARTY"] = [
-                        Entity(text=p, entity_type="PARTY", start=0, end=0, context="Extracted by AI")
-                        for p in ai_entities["PARTY"] if isinstance(p, str) and p.strip()
-                    ]
+                    valid_parties = []
+                    invalid_patterns = [".....", "m/s ...", "___", "[", "]", "party 1", "party 2", "first party", "second party"]
+                    for p in ai_entities["PARTY"]:
+                        if isinstance(p, str) and p.strip():
+                            clean_p = p.lower().strip()
+                            # Skip if it matches invalid patterns or is too short
+                            if len(p.strip()) > 3 and not any(inv in clean_p for inv in invalid_patterns):
+                                valid_parties.append(
+                                    Entity(text=p.strip(), entity_type="PARTY", start=0, end=0, context="Extracted by AI")
+                                )
+                    if valid_parties:
+                        entities["PARTY"] = valid_parties
                 
                 # MONEY - pure AI extraction as requested
                 if ai_entities.get("MONEY"):
@@ -552,7 +560,20 @@ def analyze_contract(text: str, filename: str, use_ai_extraction: bool = True) -
         except Exception as e:
             logger.error(f"Failed to generate AI recommendations/concerns: {e}")
 
-    result["clause_risks"] = [cr.to_dict() for cr in clause_risks]
+    # Build clause_risks with content for display
+    clause_risks_with_content = []
+    for i, cr in enumerate(clause_risks):
+        risk_dict = cr.to_dict()
+        # Add clause content for display in Risk Analysis
+        if i < len(result["clauses"]):
+            clause = result["clauses"][i]
+            risk_dict["clause_content"] = clause.get("content", "")[:500]
+            # Add key_points for richer explanations
+            if clause.get("key_points"):
+                risk_dict["key_points"] = clause.get("key_points")
+        clause_risks_with_content.append(risk_dict)
+    
+    result["clause_risks"] = clause_risks_with_content
     
     # Specialized clause analysis
     clause_analysis = run_all_analyzers(cleaned_text)
@@ -857,11 +878,28 @@ def render_risk_analysis(clause_risks: list, risk_score: float):
             else:
                 icon = "🟢"
                 
-            with st.expander(f"{icon} {risk.get('clause_id', 'Unknown Clause')}: {risk.get('risk_category', 'General')} (Score: {score})"):
-                st.markdown(f"**Issue:** {risk.get('explanation', 'No details available')}")
-                st.info(f"**Clause Text:** \"{risk.get('clause_content', '')[:300]}...\"")
-                if risk.get("recommendation"):
-                     st.markdown(f"**💡 Recommendation:** {risk.get('recommendation')}")
+            with st.expander(f"{icon} {risk.get('clause_id', 'Unknown Clause')}: {risk.get('clause_type', 'General')} (Score: {score})"):
+                # Extract explanation from risk_factors if available
+                risk_factors = risk.get('risk_factors', [])
+                if risk_factors:
+                    explanations = [rf.get('description', '') for rf in risk_factors if rf.get('description')]
+                    explanation = "; ".join(explanations[:3]) if explanations else "Risk identified based on clause patterns."
+                else:
+                    explanation = "Risk identified based on clause patterns."
+                
+                st.markdown(f"**Issue:** {explanation}")
+                
+                # Show clause content
+                clause_content = risk.get('clause_content', '') or risk.get('clause_title', '')
+                if clause_content:
+                    st.info(f"**Clause:** \"{clause_content[:300]}{'...' if len(str(clause_content)) > 300 else ''}\"")
+                
+                # Show alternatives/recommendations
+                alternatives = risk.get("alternatives", [])
+                if alternatives:
+                    st.markdown("**💡 Suggested Alternatives:**")
+                    for alt in alternatives[:2]:
+                        st.markdown(f"- {alt}")
 
 
 def render_compliance(compliance: dict, law_notes: list):
@@ -1054,59 +1092,115 @@ def generate_pdf_report(result: dict) -> bytes:
     """Generate PDF report for export."""
     from fpdf import FPDF
     
+    def safe_text(text, max_len=400):
+        """Sanitize text for PDF - remove special chars, truncate, and break long words."""
+        if not text:
+            return "N/A"
+        # Convert to string and truncate
+        text = str(text)[:max_len]
+        
+        # Replace common unicode with ASCII equivalents FIRST
+        replacements = {
+            '₹': 'Rs.', '–': '-', '—': '-', '"': '"', '"': '"', 
+            ''': "'", ''': "'", '•': '-', '→': '->', '←': '<-',
+            '…': '...', '\u200b': '', '\xa0': ' ', '\t': ' '
+        }
+        for k, v in replacements.items():
+            text = text.replace(k, v)
+        
+        # Remove/replace problematic characters
+        try:
+            text = text.encode('latin-1', 'replace').decode('latin-1')
+        except:
+            text = text.encode('ascii', 'replace').decode('ascii')
+        
+        # Break very long words (prevent FPDF horizontal overflow)
+        words = text.split()
+        safe_words = []
+        for word in words:
+            if len(word) > 40:
+                # Break long words
+                safe_words.append(word[:40] + "...")
+            else:
+                safe_words.append(word)
+        text = ' '.join(safe_words)
+        
+        # Remove multiple spaces
+        while '  ' in text:
+            text = text.replace('  ', ' ')
+        
+        return text.strip() if text.strip() else "N/A"
+    
+    def safe_multi_cell(pdf_obj, h, txt):
+        """Wrapper for multi_cell with error handling. Uses full usable width."""
+        # A4 page is 210mm, with 15mm margins on each side = 180mm usable
+        w = 180
+        try:
+            pdf_obj.multi_cell(w, h, txt)
+        except Exception:
+            try:
+                pdf_obj.multi_cell(w, h, str(txt)[:80])
+            except:
+                pdf_obj.cell(w, h, "Error", ln=True)
+    
     pdf = FPDF()
+    pdf.set_margins(15, 15, 15)  # MUST be set BEFORE add_page
+    pdf.set_auto_page_break(auto=True, margin=15)
     pdf.add_page()
     
     # Title
-    pdf.set_font("Arial", "B", 16)
+    pdf.set_font("Helvetica", "B", 16)
     pdf.cell(0, 10, "Contract Analysis Report", ln=True, align="C")
     pdf.ln(10)
     
     # Contract info
-    pdf.set_font("Arial", "B", 12)
-    pdf.cell(0, 10, f"Contract Type: {result.get('contract_type', 'N/A')}", ln=True)
-    pdf.cell(0, 10, f"Risk Level: {result.get('risk_level', 'N/A').upper()}", ln=True)
+    pdf.set_font("Helvetica", "B", 12)
+    pdf.cell(0, 10, safe_text(f"Contract Type: {result.get('contract_type', 'N/A')}", 60), ln=True)
+    pdf.cell(0, 10, safe_text(f"Risk Level: {str(result.get('risk_level', 'N/A')).upper()}", 30), ln=True)
     pdf.cell(0, 10, f"Risk Score: {result.get('risk_score', 0):.1f}/10", ln=True)
-    pdf.cell(0, 10, f"Analysis Date: {result.get('timestamp', 'N/A')[:10]}", ln=True)
+    pdf.cell(0, 10, f"Analysis Date: {str(result.get('timestamp', 'N/A'))[:10]}", ln=True)
     pdf.ln(10)
     
     # Risk Summary
-    pdf.set_font("Arial", "B", 14)
+    pdf.set_font("Helvetica", "B", 14)
     pdf.cell(0, 10, "Risk Assessment Summary", ln=True)
-    pdf.set_font("Arial", "", 10)
-    pdf.multi_cell(0, 8, result.get("risk_summary", "No summary available"))
+    pdf.set_font("Helvetica", "", 10)
+    safe_multi_cell(pdf, 8, safe_text(result.get("risk_summary", "No summary available"), 500))
     pdf.ln(5)
     
     # Top Concerns
-    pdf.set_font("Arial", "B", 14)
+    pdf.set_font("Helvetica", "B", 14)
     pdf.cell(0, 10, "Top Concerns", ln=True)
-    pdf.set_font("Arial", "", 10)
-    for concern in result.get("top_concerns", [])[:5]:
-        pdf.multi_cell(0, 8, f"- {concern}")
+    pdf.set_font("Helvetica", "", 10)
+    concerns = result.get("top_concerns", [])
+    if concerns:
+        for concern in concerns[:5]:
+            safe_multi_cell(pdf, 8, safe_text(f"- {concern}", 200))
     pdf.ln(5)
     
     # Recommendations
-    pdf.set_font("Arial", "B", 14)
+    pdf.set_font("Helvetica", "B", 14)
     pdf.cell(0, 10, "Recommendations", ln=True)
-    pdf.set_font("Arial", "", 10)
-    for rec in result.get("recommendations", [])[:5]:
-        pdf.multi_cell(0, 8, f"- {rec}")
+    pdf.set_font("Helvetica", "", 10)
+    recs = result.get("recommendations", [])
+    if recs:
+        for rec in recs[:5]:
+            safe_multi_cell(pdf, 8, safe_text(f"- {rec}", 200))
     pdf.ln(5)
     
     # Compliance
-    pdf.set_font("Arial", "B", 14)
+    pdf.set_font("Helvetica", "B", 14)
     pdf.cell(0, 10, "Compliance Score", ln=True)
-    pdf.set_font("Arial", "", 10)
+    pdf.set_font("Helvetica", "", 10)
     compliance = result.get("compliance", {})
     pdf.cell(0, 8, f"Score: {compliance.get('score', 0):.0f}%", ln=True)
     
     # Disclaimer
     pdf.ln(20)
-    pdf.set_font("Arial", "I", 8)
-    pdf.multi_cell(0, 5, 
-        "DISCLAIMER: This report is generated by an AI system for educational purposes only. "
-        "It does not constitute legal advice. Please consult a qualified legal professional "
-        "before making any decisions based on this analysis."
+    pdf.set_font("Helvetica", "I", 8)
+    safe_multi_cell(pdf, 5, 
+        "DISCLAIMER: This report is AI-generated for educational purposes only. "
+        "It does not constitute legal advice. Consult a legal professional."
     )
     
     return bytes(pdf.output())
